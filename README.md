@@ -2,12 +2,15 @@
 This is Team D's project repository. Shall be tackling the problem of helping graduates/students find a reliable job by cutting down the search method or type that other sites use.
 
 # Roles and Team members
-<br> Team D Roles    First name    Last Name </br> 
+<br> Team D </br> 
+ <br>   Roles     First name     Last Name </br>
  <br>   PM            Devon        Beal    </br> 
- <br>    Dev1          nicholas     Gauthier    </br> 
-  <br>   Dev2          kaleb        hannan    </br> 
-  <br>   Dev 3         Seth         Vaughn    </br> 
-  <br>   Design        Nayan        Sawyer    </br> 
+ <br>   Dev1          nicholas     Gauthier    </br> 
+  <br>  Dev2          kaleb        hannan    </br> 
+  <br>  Dev 3         Seth         Vaughn    </br> 
+  <br>  Design        Nayan        Sawyer    </br> 
+ <br>   Design(NMD442) Ethan        Suderley    </br> 
+  <br>  Design(NMD442) Kearson      Sutton    </br> 
 
    PM- Project manager, makes agenda for weekly meetings,  inspires the team, offers advice, promotes fair play, evaluates team work, and monitors work on assignments but does not micromanage.
   Dev- Developer, develops the software, verifies that implementations  meet requirements, takes lead in learning relevant technical skills and ensures the team learns them as well, verifies the design can be done, and ensures it is stable.
