@@ -21,22 +21,16 @@ This is Team D's project repository. Shall be tackling the problem of helping gr
 
 # Problem statment
 
-Statement 1: Existing job sites do not include a lot jobs that college students can take while in college.
-For example, searching for job listing on most job sites leads to mostly full time positions.
-Prior solution: Most job search sites have a filter for part time positions.
-Gap in prior solution: 
-Prior solutions job listings still often arent entry level positions. 
-Even if they are part time, most positions on prior solutions still have hours during the school day. 
-Also creates a lot of noise to sort through.
-Question: How can we filter out the amount of noise and irrelevant job listings to get results relevant to college students?
+The Problem: College students (especially computer science students) learn valuable skills during college that would make them eligible to do work that pays much higher than minimum wage. However, students rarely find or get jobs that take advantage of these skills, or that pay such high wages. 
 
+Example: Many third year computer science students have taken multiple coding classes, as well as data structures and algorithms. This is typically enough knowledge to do entry level programming jobs, which can easily start at twenty to thirty dollars per hour. However, it is very difficult to find this kind of work, so most college students end up working low skill low pay work instead. 
+Prior Solutions: 
+Job Sites: Many job sites include part time work, and allow filtering to quickly find jobs that fit the criteria of the user. Freelance Work Sites: There are many freelance work sites out there like Upwork and Fiverr that let people post their skills and get hired to do work on their own time. 
+Gaps in Prior Solutions: 
+1) The part time jobs available on most job sites generally have degree requirements that college students cannot meet even if they have the skills needed 
+2) The number of part time jobs listed on job sites is very low 
+3) Large job sites include mostly jobs a big corporations that usually work on larger projects where it makes less sense to hire a college student 
+4) Freelance sites usually take a large cut of the profits from jobs worked 
+5) Competition if fierce on freelance sites, and there is a good deal of luck involved with becoming a popular freelance worker 
+Question: How can college students with valuable skills find part time jobs that take advantage of their skills, and pay them accordingly?
 
-Statement 2: It’s hard for students to communicate to potential employers what their existing skills are.
-For example, a computer science degree does not communicate much information about the actual skills of a student.
-Another example is that students who do not yet have their degree do not have any evidence of technical skills.
-Prior solution: Existing recruitment platforms allow applicants to list their skills and achievements. For instance, Linkedin
-Gap in prior solution:
-Portfolios and achievements don’t always tell the full story of technical literacy.
-Existing platforms don’t cater to college students specifically
-Question: How can we properly communicate a students technical skill and abilities to potential employers?
-Question: How can we build a recruitment platform that caters to college students in particular?
