@@ -6,7 +6,7 @@ This is Team D's project repository. Shall be tackling the problem of helping gr
  <br>   Roles     First name     Last Name </br>
  <br>   PM            Devon        Beal    </br> 
  <br>   Dev1          Nick    Gauthier    </br> 
-  <br>  Dev2          kaleb        hannan    </br> 
+  <br>  Dev2          Kaleb        Hannan    </br> 
   <br>  Dev 3         Seth         Vaughn    </br> 
   <br>  Design        Nayan        Sawyer    </br> 
  <br>   Design(NMD442) Ethan        Suderley    </br> 
