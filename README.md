@@ -35,16 +35,24 @@ Gaps in Prior Solutions:
 Question: How can college students with valuable skills find part-time jobs that take advantage of their skills, and pay them accordingly?
 
 # How To Set Up Dev Environment 
-
-1) Open your Terminal
-2) In the Repo Press the Green "Code" Button and Copy the HTTPS URL
+0) You will need to install VSCode(https://code.visualstudio.com/), git(https://github.com/git-guides/install-git) and Node.js(https://nodejs.org/en/download) to run and Develop this applicaton.
+1) We also recommend you get the Prettier VSCode extension(https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), ESLint VSCode extension(https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and React Dev Tools Browser Extention(https://react.dev/learn/react-developer-tools)
+2) Open your Terminal
+3) In the Repo Press the Green "Code" Button and Copy the HTTPS URL
+   
    ![](Images/README_Images/Screenshot%202023-10-10%20164522.png)
-3) In the Terminal type in "git clone https://URL-FROM-GITHUB"
+   
+4) In the Terminal type in "git clone https://URL-FROM-GITHUB"
+   
    ![](Images/README_Images/Screenshot%202023-10-10%20171716.png)
+   
 5) Open a new Instance of VSCode and in the "Explorer" tab press "Open Folder" and Select the Repository ( It is probably in your User folder and it would be called "Team D")
+   
    ![](Images/README_Images/Screenshot%202023-10-10%20170302.png)
+   
 6) In VSCode Open the Terminal under the Terminal tab and Type in "npm install".
 7) After that is done in the terminal type in "npm start" to start the Program.
+    
    ![](Images/README_Images/Screenshot%202023-10-10%20171136.png)
    
 
