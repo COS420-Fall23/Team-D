@@ -1,0 +1,27 @@
+,See column descriptions in other tab,,,,
+ID,User Story,Sprint Number,Story Priority,Story Status,Story Points
+100,"As a Student or Company, I want to be able to register for a new account using an email.",3,H,W,2
+102,"As a Student or Company, I want to be able to log in to my account using an email and password.
+",3,H,W,2
+103,"As a college student, I want to be able to search and find jobs that do not have a degree requirement so that I can apply for jobs that match my skill set and not have to worry about my experience not matching requirements.
+",4,H,W,8
+104,"As a college student, I want to be able to use a filter to search for job opportunities by pay, location, work type, and requirements.
+",5,H,W,4
+105,"As a college student, I want to be able to see a vast list of jobs that align with my college major to increase the chance of them finding a job that will help me grow my skills while doing the job.
+",5,H,W,2
+106,"As a students I would like to be able to use the application login or without being login so that I do not have to make an account. 
+",4,M,W,4
+107,As a student I want to be able see a feed of jobs on the home screen that the site is recommending to me so that I might be able to find jobs that I might not have thought to search for.  ,4,M,W,6
+108,"As an students, I want to be able to filter jobs by  remote or in-person to so that I can find a job that will fit with the requirements that I want for my job.",6,M,W,2
+109,"As a student I want to be able set up email notifications for jobs that fit the skills that I am looking for so that it makes it easier for me to find jobs.
+",6,M,W,8
+110,"As a student I want to be able click on a job and be able to see a job description the compay name and what skills that it might require. 
+",7,M,W,2
+111,"As a college student, I would like to be able to save a job for later if I find one that I like but want to continue to look for other jobs so I can easily go back and find it later.
+",7,M,W,4
+112,"As a college student, I want to be able to find a freelance job on the website so that I can still work even if I do not have the time for a full-time or part-time job.",6,L,W,4
+113,"As a Student, I want to be able to follow the Company that I am interested in so that I can add them to my feed so that I can see new jobs/ work opportunities that they have posted.
+",5,L,W,2
+114,"As a Student, I want to be able to click on a specific company and be able to see all of the jobs that they have posted and also see a description of what the company dose.",6,L,W,2
+115,"As a college student, I want to be able to find a job that could qualify me to get college credits toward my degree.  
+",7,L,W,1
