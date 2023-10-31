@@ -1,10 +1,10 @@
 import { Form } from "react-bootstrap";
 import { LoginInfoProp } from "../pages/LoginPage";
 
-export function LoginForm(
-  { setEmail }: LoginInfoProp,
-  { setPassword }: LoginInfoProp
-): JSX.Element {
+export function LoginForm({
+  setEmail,
+  setPassword,
+}: LoginInfoProp): JSX.Element {
   function updateEmail(event: React.ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
   }
