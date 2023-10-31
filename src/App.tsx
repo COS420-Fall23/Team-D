@@ -3,11 +3,11 @@ import "./App.css";
 import { AppRouter } from "./Routes";
 
 function App(): JSX.Element {
-  return (
-    <div className="App">
-      <AppRouter></AppRouter>
-    </div>
-  );
+    return (
+        <div className="App">
+            <AppRouter></AppRouter>
+        </div>
+    );
 }
 
 export default App;
