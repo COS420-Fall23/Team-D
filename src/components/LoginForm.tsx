@@ -20,10 +20,10 @@ export function LoginForm({
         <Form.Control type="text" onChange={updateEmail} placeholder="Email" />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="EnterEmail">
+      <Form.Group className="mb-3" controlId="EnterPassword">
         <Form.Label>Enter Password</Form.Label>
         <Form.Control
-          type="text"
+          type="password"
           onChange={updatePassword}
           placeholder="Password"
         />
