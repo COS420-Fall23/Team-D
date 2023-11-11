@@ -12,7 +12,7 @@ export function LoginButton(): JSX.Element {
                         width: "100px",
                         fontSize: "24px",
                         marginLeft: "900px",
-                        marginBottom: "750px",
+                        marginBottom: "100px",
                     }}
                 >
                     Login
