@@ -14,7 +14,7 @@ export function HomePage(): JSX.Element {
             <div>
                 {dummyListings.map(
                     (listing: JobListing): JSX.Element => (
-                        <ListingView listing={listing} />
+                        <ListingView key={listing.id} listing={listing} />
                     )
                 )}
             </div>
