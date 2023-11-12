@@ -1,13 +1,11 @@
 
-name: Node.js Run Test cov
+name: Node.js Run npm test
 
-on: 
-  push:
-  pull_request:
-    types: open
+on: [pull_request]
 
 jobs:
   build:
+        name: Run npm tests
         runs-on: ubuntu-latest
 
         steps: 
