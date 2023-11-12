@@ -6,15 +6,7 @@ export function LoginButton(): JSX.Element {
     return (
         <span>
             <Link to={"/login"}>
-                <Button
-                    style={{
-                        height: "50px",
-                        width: "100px",
-                        fontSize: "24px",
-                        marginLeft: "900px",
-                        marginBottom: "100px",
-                    }}
-                >
+                <Button>
                     Login
                 </Button>
             </Link>
