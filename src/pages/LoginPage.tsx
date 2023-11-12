@@ -14,7 +14,17 @@ export function LoginPage(): JSX.Element {
     <div className="LoginPage">
       <h1>Login</h1>
       <LoginForm setEmail={setEmail} setPassword={setPassword}></LoginForm>
-      <Button>Confirm</Button>
+      {/* onClick will change */}
+      <Button
+        onClick={() => (
+          <div>
+            {Email}
+            {Password}
+          </div>
+        )}
+      >
+        Confirm
+      </Button>
     </div>
   );
 }
