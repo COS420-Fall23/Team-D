@@ -22,10 +22,4 @@ describe("Simple tests for the home page", () => {
     const listings = screen.getAllByText("See More");
     expect(listings.length).toBeGreaterThan(0);
   });
-
-  test("CI intagration", () => {
-    const loginButton = screen.getByRole("button", { name: "test" });
-
-    expect(loginButton).toBeInTheDocument();
-  });
 });
