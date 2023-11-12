@@ -24,7 +24,7 @@ describe("Simple tests for the home page", () => {
   });
 
   test("CI intagration", () => {
-    const loginButton = screen.getByRole("button", { name: "Login" });
+    const loginButton = screen.getByRole("button", { name: "test" });
 
     expect(loginButton).toBeInTheDocument();
   });
