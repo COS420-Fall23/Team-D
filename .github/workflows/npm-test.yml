@@ -1,5 +1,5 @@
 
-name: Node.js Run Test cov
+name: Run npm Test
 
 on: 
   push:
