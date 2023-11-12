@@ -8,10 +8,12 @@ export function HomePage(): JSX.Element {
 
     return (
         <div>
-            <h1>College Jobs</h1>
-            <LoginButton></LoginButton>
+            <header>
+                <h1>College Jobs</h1>
+                <LoginButton></LoginButton>
+            </header>
 
-            <div>
+            <div className="feedBox">
                 {dummyListings.map(
                     (listing: JobListing): JSX.Element => (
                         <ListingView key={listing.id} listing={listing} />

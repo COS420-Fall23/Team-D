@@ -8,7 +8,7 @@ export interface ListingViewProps {
 
 export function ListingView({ listing }: ListingViewProps): JSX.Element {
     return (
-        <div>
+        <div className="listing">
             <h3>{listing.company}</h3>
             <h4>{listing.title}</h4>
             <p>
