@@ -1,7 +1,10 @@
 
 name: Node.js Run Test cov
 
-on: [push, pull_request]
+on: 
+  push:
+  pull_request:
+    types: open
 
 jobs:
   build:
