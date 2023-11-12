@@ -11,3 +11,67 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+header {
+  background-color: #4586FF;
+  min-height: 8vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 1vmin);
+  color: white;
+}
+
+header h1 {
+  margin: 0 20px;
+  padding: 0;
+}
+
+header button {
+  height: 50px;
+  width: 100px;
+  font-size: 24px;
+  margin: 0 20px;
+  padding: 0;
+}
+
+.listing {
+  background-color: #E6E6E6;
+  border-radius: 40px;
+  text-align: left;
+  margin: 30px;
+  padding: 20px;
+  padding-left: 100px;
+}
+
+.feedBox {
+  margin-left: 20%;
+}
+
+.LoginPage{
+  background-color: #4586FF;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+}
+
+.LoginPage input {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+.LoginPage button {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #BBF221;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.75);
+}
+/*
+comment
+*/
