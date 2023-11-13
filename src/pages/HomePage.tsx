@@ -6,12 +6,13 @@ import { getDummyJobListings } from "../dummy/job_listing";
 
 export function HomePage(): JSX.Element {
   const dummyListings = getDummyJobListings();
+  const logdInUserID = -1;
 
   return (
     <div>
       <header>
         <h1>College Jobs</h1>
-        <ProfileDropDownButton></ProfileDropDownButton>
+        <ProfileDropDownButton userID={-logdInUserID}></ProfileDropDownButton>
         <LoginButton></LoginButton>
       </header>
 

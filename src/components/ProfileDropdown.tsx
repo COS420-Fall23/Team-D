@@ -1,7 +1,19 @@
 import { Dropdown, DropdownDivider } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { User } from "../data/userInterface";
+import { getDummyUsers } from "../dummy/Users";
 
-export function ProfileDropDownButton(): JSX.Element {
+export interface ProfileDropdownProp {
+  userID: number;
+}
+
+export function ProfileDropDownButton(
+  userID: ProfileDropdownProp
+): JSX.Element {
+  const logedInUser = getDummyUsers().find(
+    (value: User): boolean => value.id === userID.userID
+  );
+
   return (
     <Dropdown data-testid="profileDropdown">
       <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -13,10 +25,10 @@ export function ProfileDropDownButton(): JSX.Element {
           disabled={true}
           style={{ color: "black", fontWeight: "bold" }}
         >
-          ExampleName
+          {logedInUser?.name}
         </Dropdown.Item>
         <Dropdown.Item disabled={true} style={{ color: "gray" }}>
-          CollegeName
+          Student at {logedInUser?.College}
         </Dropdown.Item>
         <DropdownDivider />
         <Dropdown.Item data-testid="settings">
