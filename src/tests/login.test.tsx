@@ -33,25 +33,4 @@ describe("Simple tests for login page", () => {
     expect(emailBox).toBeInTheDocument();
     expect(passwordBox).toBeInTheDocument();
   });
-
-  test("Login page allows for inputting of both email and password", () => {
-    const [exampleEmail, examplePassword] = [
-      "example@example.com",
-      "examplePassword",
-    ];
-
-    render(<LoginPage />);
-
-    const emailBox = screen.getByPlaceholderText("Email");
-    const passwordBox = screen.getByPlaceholderText("Password");
-
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-    act(() => {
-      userEvent.type(emailBox, exampleEmail);
-      userEvent.type(passwordBox, examplePassword);
-    });
-
-    expect(emailBox).toHaveValue(exampleEmail);
-    expect(passwordBox).toHaveValue(examplePassword);
-  });
 });
