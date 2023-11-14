@@ -22,4 +22,10 @@ describe("Simple tests for the home page", () => {
     const listings = screen.getAllByText("See More");
     expect(listings.length).toBeGreaterThan(0);
   });
+
+  test("Profile dropdown is present", () => {
+    const ProfileDropdown = screen.getByTestId("profileDropdown");
+
+    expect(ProfileDropdown).toBeInTheDocument();
+  });
 });

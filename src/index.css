@@ -13,7 +13,7 @@ code {
 }
 
 header {
-  background-color: #4586FF;
+  background-color: #4586ff;
   min-height: 8vh;
   display: flex;
   flex-direction: row;
@@ -37,7 +37,7 @@ header button {
 }
 
 .listing {
-  background-color: #E6E6E6;
+  background-color: #e6e6e6;
   border-radius: 40px;
   text-align: left;
   margin: 30px;
@@ -49,8 +49,8 @@ header button {
   margin-left: 20%;
 }
 
-.LoginPage{
-  background-color: #4586FF;
+.LoginPage {
+  background-color: #4586ff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -69,8 +69,8 @@ header button {
   padding: 10px;
   border-radius: 10px;
   border: none;
-  background-color: #BBF221;
-  box-shadow: 2px 2px 4px rgba(0,0,0,0.75);
+  background-color: #bbf221;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
 }
 /*
 comment
