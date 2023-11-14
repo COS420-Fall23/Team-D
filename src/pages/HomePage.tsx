@@ -12,7 +12,7 @@ export function HomePage(): JSX.Element {
     <div>
       <header>
         <h1>College Jobs</h1>
-        <ProfileDropDownButton userID={-logdInUserID}></ProfileDropDownButton>
+        <ProfileDropDownButton userID={logdInUserID}></ProfileDropDownButton>
         <LoginButton></LoginButton>
       </header>
 
