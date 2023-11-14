@@ -2,7 +2,6 @@ import React from "react";
 import { act, render, screen } from "@testing-library/react";
 import App from "../App";
 import { LoginPage } from "../pages/LoginPage";
-import userEvent from "@testing-library/user-event";
 
 describe("Simple tests for login page", () => {
   test("Login button is present", () => {
