@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCk5kDeiz32d6ZbeVgJtWoiQ0g2TwRVsLk",
-  authDomain: "collage-jobs.firebaseapp.com",
-  projectId: "collage-jobs",
-  storageBucket: "collage-jobs.appspot.com",
-  messagingSenderId: "886510450396",
-  appId: "1:886510450396:web:4cbbb8d1abc561d687e619",
+  apiKey: "AIzaSyCZGpyLq1wRJnKgYnKTqKaQ637olA4_ywM",
+  authDomain: "college-jobs.firebaseapp.com",
+  projectId: "college-jobs",
+  storageBucket: "college-jobs.appspot.com",
+  messagingSenderId: "376851561376",
+  appId: "1:376851561376:web:cc649a44433a0d5993c2c5",
 };
 
 // Initialize Firebase
