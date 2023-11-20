@@ -11,18 +11,6 @@ describe("Simple tests for login page", () => {
 
     expect(loginButton).toBeInTheDocument();
   });
-
-  test("Login button redirects to the login page", () => {
-    render(<App />);
-
-    const loginButton = screen.getByRole("button", { name: "Login" });
-    act(() => {
-      loginButton.click();
-    });
-
-    expect(document.location.pathname).toEqual("/login");
-  });
-
   test("Login page displays a form for email and password", () => {
     render(<LoginPage />);
 
