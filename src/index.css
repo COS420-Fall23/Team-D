@@ -13,7 +13,7 @@ code {
 }
 
 header {
-  background-color: #4586ff;
+  background-color: #0066ff;
   min-height: 8vh;
   display: flex;
   flex-direction: row;
@@ -69,7 +69,7 @@ header button {
   padding: 10px;
   border-radius: 10px;
   border: none;
-  background-color: #bbf221;
+  background-color: orange;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
 }
 /*
