@@ -15,7 +15,7 @@ export function LoginPage(): JSX.Element {
       <header>
         <h1>College Jobs</h1>
       </header>
-      <h1>Login</h1>
+      <h2>Job searching for Computer Science Majors</h2>
       <LoginForm setEmail={setEmail} setPassword={setPassword}></LoginForm>
       {/* onClick will change */}
       <Button
