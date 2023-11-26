@@ -1,8 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap");
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Fredoka", "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -20,7 +21,7 @@ header {
   align-items: center;
   justify-content: space-between;
   font-size: calc(10px + 1vmin);
-  color: white;
+  color: #70ff00;
 }
 
 header h1 {
@@ -50,7 +51,7 @@ header button {
 }
 
 .LoginPage {
-  background-color: #4586ff;
+  background-color: #0066ff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

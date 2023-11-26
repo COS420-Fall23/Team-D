@@ -12,6 +12,9 @@ export function LoginPage(): JSX.Element {
   const [Password, setPassword] = useState<string>("");
   return (
     <div className="LoginPage">
+      <header>
+        <h1>College Jobs</h1>
+      </header>
       <h1>Login</h1>
       <LoginForm setEmail={setEmail} setPassword={setPassword}></LoginForm>
       {/* onClick will change */}
