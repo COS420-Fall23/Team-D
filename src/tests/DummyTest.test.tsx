@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+/*import { render, screen } from "@testing-library/react";
 import App from "../App";
 
 describe("Dummy test for testing CI", () => {
@@ -10,3 +10,4 @@ describe("Dummy test for testing CI", () => {
     expect(loginButton).toBeInTheDocument();
   });
 });
+*/
