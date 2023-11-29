@@ -6,7 +6,7 @@
         - College
         - DOB
         - Location
-
+        The code below was generated using github copilot
 */
 
 import { fireEvent, render, screen } from "@testing-library/react";
