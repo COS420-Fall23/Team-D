@@ -41,7 +41,7 @@ describe("Simple tests for the home page", () => {
   });
 
   test("Filters job listings by location", () => {
-    const filterLocationSelect = screen.getByLabelText("Filter by Location");
+    const filterLocationSelect = screen.getByText("Filter by Location");
 
     fireEvent.change(filterLocationSelect, {
       target: { value: "Bangor, ME 04401" },
@@ -52,7 +52,7 @@ describe("Simple tests for the home page", () => {
   });
 
   test("Filters job listings by employment type", () => {
-    const filterTypeSelect = screen.getByLabelText("Filter by Employment Type");
+    const filterTypeSelect = screen.getByText("Filter by Employment Type");
 
     fireEvent.change(filterTypeSelect, { target: { value: "Part-Time" } });
 
