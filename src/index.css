@@ -53,3 +53,7 @@ header button {
 .feedBox {
   margin-left: 20%;
 }
+
+.searchAndFilter {
+  float: left;
+}
