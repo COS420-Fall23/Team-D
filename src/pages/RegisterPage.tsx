@@ -45,7 +45,7 @@ export function RegisterPage(): JSX.Element {
     };
 
     return (
-        <div>
+        <div id="registerPage">
             <h1>Register</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="fullName">Full Name</label>

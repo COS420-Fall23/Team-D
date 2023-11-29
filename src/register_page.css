@@ -1,12 +1,15 @@
+/*
+TODO: Move all of this into index.css. Turns out all css is global in React.
+*/
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #4586ff;
 }
 
-#root {
-    background-color: #4586ff;
+#registerPage {
+    background-color: #0066ff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
