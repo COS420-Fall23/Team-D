@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../register_page.css";
 
 export function RegisterPage(): JSX.Element {
     // This was generated using github copilot
@@ -45,7 +46,7 @@ export function RegisterPage(): JSX.Element {
 
     return (
         <div>
-            <h1>Register Page</h1>
+            <h1>Register</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="fullName">Full Name</label>
                 <input
