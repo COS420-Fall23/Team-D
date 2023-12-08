@@ -4,33 +4,36 @@ export function getDummyUsers(): User[] {
   const dummyUsers: User[] = [];
 
   dummyUsers.push({
-    id: -1,
-    name: "Kaleb Hannan",
+    id: "-1",
+    FirstName: "Kaleb",
+    LastName: "Hannan",
     Email: "kaleb.hannan@maine.edu",
     phoneNumber: "(207)111-9999",
     College: "UMaine Orono",
     DOB: "N/A",
-    Location: "Gray",
+    SavedJobs: [],
   });
 
   dummyUsers.push({
-    id: -2,
-    name: "Austin Hannan",
+    id: "-2",
+    FirstName: "Austin",
+    LastName: "Hannan",
     Email: "ahannan@gmail.com",
     phoneNumber: "(207)222-8888",
     College: "CMCC",
     DOB: "N/A",
-    Location: "Auburn",
+    SavedJobs: [],
   });
 
   dummyUsers.push({
-    id: -3,
-    name: "John Dow",
+    id: "-3",
+    FirstName: "John",
+    LastName: "Dow",
     Email: "jDow123@gmail.com",
     phoneNumber: "(207)333-7777",
     College: "Harvard",
     DOB: "N/A",
-    Location: "Boston",
+    SavedJobs: [],
   });
 
   return dummyUsers;
