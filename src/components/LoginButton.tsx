@@ -1,4 +1,4 @@
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { User } from "../data/userInterface";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
@@ -17,8 +17,9 @@ export function LoginButton(prop: LoginButtonProp): JSX.Element {
   let navigate = useNavigate();
   let isInDB: boolean = false;
   let DBUser: User;
-  function loginchecks(): void {
-    signInWithGoogle();
+  async function loginchecks(): Promise<void> {
+    await signInWithGoogle();
+
     value?.docs.map((obj) =>
       obj.data().Email === user?.user.email ? (isInDB = true) : null
     );

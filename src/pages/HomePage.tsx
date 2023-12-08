@@ -54,7 +54,9 @@ export function HomePage(): JSX.Element {
     <div>
       <header>
         <h1>College Jobs</h1>
-        <ProfileDropDownButton userID={-1}></ProfileDropDownButton>
+        <ProfileDropDownButton
+          logedInUser={logedinUser}
+        ></ProfileDropDownButton>
         <LoginButton
           setLogin={setLogin}
           setLoginUser={setLoginUser}

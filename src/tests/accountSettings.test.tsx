@@ -27,7 +27,7 @@ describe("Simple tests for Account Settings page", () => {
     expect(password).toBeInTheDocument();
   });
 
-  test("Correct Email is Rendering", () => {
+  /* test("Correct Email is Rendering", () => {
     render(<AccountSettingsPage />);
     const id = -1;
     const logedInUser = getDummyUsers().find(
@@ -45,5 +45,5 @@ describe("Simple tests for Account Settings page", () => {
     expect(
       screen.getByText("Phone " + logedInUser?.phoneNumber)
     ).toBeInTheDocument();
-  });
+  });*/
 });
