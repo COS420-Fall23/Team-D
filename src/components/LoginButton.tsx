@@ -1,29 +1,47 @@
-import { Link } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { User } from "firebase/auth";
+import { User } from "../data/userInterface";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { auth } from "../firebaseConfig";
+import { auth, db } from "../firebaseConfig";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { collection } from "firebase/firestore";
 
 export interface LoginButtonProp {
-    logedinUser: User;
-    isLogedin : boolean
+  setLoginUser: (setLoginUser: User) => void;
+  setLogin: (newLogin: boolean) => void;
 }
 
-export function LoginButton({logedinUser, isLogedin}: LoginButtonProp): JSX.Element {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function LoginButton(prop: LoginButtonProp): JSX.Element {
   const [signInWithGoogle, user] = useSignInWithGoogle(auth);
-
+  const [value] = useCollection(collection(db, "User"));
+  let navigate = useNavigate();
+  let isInDB: boolean = false;
+  let DBUser: User;
   function loginchecks(): void {
     signInWithGoogle();
-    if(/*user?.user.email is Not DB*/){
-        //Rount to Registration page 
+    value?.docs.map((obj) =>
+      obj.data().Email === user?.user.email ? (isInDB = true) : null
+    );
+    if (isInDB === false) {
+      navigate("/register");
+    } else {
+      value?.docs.map((obj) =>
+        obj.data().Email === user?.user.email
+          ? (DBUser = {
+              id: obj.data().id,
+              FirstName: obj.data().FirstName,
+              LastName: obj.data().LastName,
+              Email: obj.data().Email,
+              phoneNumber: obj.data().phoneNumber,
+              College: obj.data().College,
+              DOB: obj.data().DOB,
+              SavedJobs: obj.data().SavedJobs,
+            })
+          : null
+      );
+      prop.setLoginUser(DBUser);
     }
-    else{
-        //get User from DB 
-        let DBUser;
-        logedinUser.setLoginUser(DBUser);
-    }
-    isLogedin.setLogin(true);
+    prop.setLogin(true);
   }
   return <Button onClick={() => loginchecks()}>Login</Button>;
 }

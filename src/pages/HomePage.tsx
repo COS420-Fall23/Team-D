@@ -4,13 +4,25 @@ import { ListingView } from "../components/ListingView";
 import { ProfileDropDownButton } from "../components/ProfileDropdown";
 import { JobListing } from "../data/job_listing";
 import { getDummyJobListings } from "../dummy/job_listing";
-import { auth } from "../firebaseConfig";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { LoginButton } from "../components/LoginButton";
+import { User } from "../data/userInterface";
 
 export function HomePage(): JSX.Element {
+  let user: User = {
+    id: "",
+    FirstName: "",
+    LastName: "",
+    Email: "",
+    phoneNumber: "",
+    College: "",
+    DOB: "",
+    SavedJobs: [],
+  };
   const [searchTerm, setSearchTerm] = useState("");
   const [filterLocation, setFilterLocation] = useState("");
   const [filterType, setFilterType] = useState("");
+  const [isLogedIn, setLogin] = useState(false);
+  const [logedinUser, setLoginUser] = useState(user);
 
   const dummyListings = getDummyJobListings()
     .filter(
@@ -25,10 +37,6 @@ export function HomePage(): JSX.Element {
     .filter(
       (listing) => filterType === "" || listing.criteria[1].value === filterType
     );
-
-  const logdInUserID = -1;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
   const getFilterOptions = (field: string): string[] => {
     const options = new Set<string>();
@@ -46,8 +54,11 @@ export function HomePage(): JSX.Element {
     <div>
       <header>
         <h1>College Jobs</h1>
-        <ProfileDropDownButton userID={logdInUserID}></ProfileDropDownButton>
-        <Button onClick={() => signInWithGoogle()}>Login</Button>
+        <ProfileDropDownButton userID={-1}></ProfileDropDownButton>
+        <LoginButton
+          setLogin={setLogin}
+          setLoginUser={setLoginUser}
+        ></LoginButton>
       </header>
 
       <div className="searchAndFilter">
