@@ -6,6 +6,7 @@ import { JobListing } from "../data/job_listing";
 import { getDummyJobListings } from "../dummy/job_listing";
 import { auth } from "../firebaseConfig";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
 
 export function HomePage(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
@@ -49,6 +50,11 @@ export function HomePage(): JSX.Element {
         <ProfileDropDownButton userID={logdInUserID}></ProfileDropDownButton>
         <Button onClick={() => signInWithGoogle()}>Login</Button>
       </header>
+      <div>
+        <Link to="/resource-page">
+          <Button>Resource Page</Button>
+        </Link>
+      </div>
 
       <div className="searchAndFilter">
         <Form>

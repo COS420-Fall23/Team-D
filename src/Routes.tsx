@@ -3,6 +3,7 @@ import { HomePage } from "./pages/HomePage";
 import { ListingPage } from "./pages/ListingPage";
 import { AccountSettingsPage } from "./pages/AccoutSettingsPage";
 import { RegisterPage } from "./pages/RegisterPage";
+import { ResourcePage } from "./pages/ResourcePage";
 
 export const AppRouter = () => {
   return (
@@ -11,7 +12,8 @@ export const AppRouter = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/listing/:listingId" element={<ListingPage />} />
         <Route path="/settings" element={<AccountSettingsPage />} />
-        <Route path="/register" element={<RegisterPage/>} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/resource-page" element={<ResourcePage />} />
       </Routes>
     </Router>
   );
