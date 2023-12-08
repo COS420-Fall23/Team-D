@@ -15,33 +15,31 @@ export function LoginButton(prop: LoginButtonProp): JSX.Element {
   const [signInWithGoogle, user] = useSignInWithGoogle(auth);
   const [value] = useCollection(collection(db, "User"));
   let navigate = useNavigate();
-  let isInDB: boolean = false;
   let DBUser: User;
+
   async function loginchecks(): Promise<void> {
     await signInWithGoogle();
 
-    value?.docs.map((obj) =>
-      obj.data().Email === user?.user.email ? (isInDB = true) : null
+    const FireBaseUser = value?.docs.find(
+      (User): boolean => User.data().Email === user?.user.email
     );
-    if (isInDB === false) {
+
+    if (FireBaseUser === undefined) {
       navigate("/register");
     } else {
-      value?.docs.map((obj) =>
-        obj.data().Email === user?.user.email
-          ? (DBUser = {
-              id: obj.data().id,
-              FirstName: obj.data().FirstName,
-              LastName: obj.data().LastName,
-              Email: obj.data().Email,
-              phoneNumber: obj.data().phoneNumber,
-              College: obj.data().College,
-              DOB: obj.data().DOB,
-              SavedJobs: obj.data().SavedJobs,
-            })
-          : null
-      );
-      prop.setLoginUser(DBUser);
+      DBUser = {
+        id: FireBaseUser.data().id,
+        FirstName: FireBaseUser.data().FirstName,
+        LastName: FireBaseUser.data().LastName,
+        Email: FireBaseUser.data().Email,
+        phoneNumber: FireBaseUser.data().phoneNumber,
+        College: FireBaseUser.data().College,
+        DOB: FireBaseUser.data().DOB,
+        SavedJobs: FireBaseUser.data().SavedJobs,
+      };
     }
+    prop.setLoginUser(DBUser);
+
     prop.setLogin(true);
   }
   return <Button onClick={() => loginchecks()}>Login</Button>;

@@ -25,7 +25,7 @@ export function ProfileDropDownButton(prop: ProfileDropdownProp): JSX.Element {
         </Dropdown.Item>
         <DropdownDivider />
         <Dropdown.Item data-testid="settings">
-          {<Link to={"/settings"}>Settings</Link>}
+          {<Link to={"/settings/" + prop.logedInUser.Email}>Settings</Link>}
         </Dropdown.Item>
         <Dropdown.Item onClick={() => <div>this will change</div>}>
           Sign Out
