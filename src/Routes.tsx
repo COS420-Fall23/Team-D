@@ -10,16 +10,7 @@ export const AppRouter = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/listing/:listingId" element={<ListingPage />} />
-        <Route
-          path="/settings/:userEmail"
-          element={
-            <AccountSettingsPage
-              logedInUser={logedinUser}
-              setLoginUser={setLoginUser}
-              setLogin={setLogin}
-            />
-          }
-        />
+        <Route path="/settings" element={<AccountSettingsPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </Router>

@@ -5,24 +5,13 @@ import { ProfileDropDownButton } from "../components/ProfileDropdown";
 import { JobListing } from "../data/job_listing";
 import { getDummyJobListings } from "../dummy/job_listing";
 import { LoginButton } from "../components/LoginButton";
-import { User } from "../data/userInterface";
+import { auth } from "../firebaseConfig";
 
 export function HomePage(): JSX.Element {
-  let user: User = {
-    id: "",
-    FullName: "",
-    Email: "",
-    phoneNumber: "",
-    College: "",
-    DOB: "",
-    SavedJobs: [],
-    Location: "",
-  };
   const [searchTerm, setSearchTerm] = useState("");
   const [filterLocation, setFilterLocation] = useState("");
   const [filterType, setFilterType] = useState("");
-  const [isLogedIn, setLogin] = useState(false);
-  const [logedinUser, setLoginUser] = useState(user);
+  const [refresh, setRefresh] = useState(false);
 
   const dummyListings = getDummyJobListings()
     .filter(
@@ -54,21 +43,10 @@ export function HomePage(): JSX.Element {
     <div>
       <header>
         <h1>College Jobs</h1>
-        {isLogedIn ? (
-          <ProfileDropDownButton
-<<<<<<< HEAD
-            logedInUser={prop.userEmail}
-            setLoginUser={prop.setLoginUser}
-            setLogin={prop.setLogin}
-=======
-            logedInUser={logedinUser}
->>>>>>> parent of 01aedcd (changed login to pass email throgh router)
-          ></ProfileDropDownButton>
+        {auth.currentUser ? (
+          <ProfileDropDownButton></ProfileDropDownButton>
         ) : (
-          <LoginButton
-            setLogin={setLogin}
-            setLoginUser={setLoginUser}
-          ></LoginButton>
+          <LoginButton refresh={refresh} setRefresh={setRefresh}></LoginButton>
         )}
       </header>
 
