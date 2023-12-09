@@ -36,9 +36,13 @@ export function AccountSettingsPage(prop: AccountSettingsProp): JSX.Element {
       <header>
         <h1>College Jobs</h1>
         <ProfileDropDownButton
+<<<<<<< HEAD
           logedInUser={logedInUser.Email}
           setLoginUser={prop.setLoginUser}
           setLogin={prop.setLogin}
+=======
+          logedInUser={logedInUser}
+>>>>>>> parent of 01aedcd (changed login to pass email throgh router)
         ></ProfileDropDownButton>
       </header>
       <h1>Account Settings</h1>

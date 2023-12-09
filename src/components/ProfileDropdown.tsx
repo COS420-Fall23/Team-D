@@ -1,6 +1,7 @@
 import { Dropdown, DropdownDivider } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { User } from "../data/userInterface";
+<<<<<<< HEAD
 import { collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { auth, db } from "../firebaseConfig";
@@ -49,6 +50,14 @@ export function ProfileDropDownButton(prop: ProfileDropdownProp): JSX.Element {
       Location: FireBaseUser?.data().Location,
     };
   }
+=======
+
+export interface ProfileDropdownProp {
+  logedInUser: User;
+}
+
+export function ProfileDropDownButton(prop: ProfileDropdownProp): JSX.Element {
+>>>>>>> parent of 01aedcd (changed login to pass email throgh router)
   return (
     <Dropdown data-testid="profileDropdown">
       <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -60,14 +69,14 @@ export function ProfileDropDownButton(prop: ProfileDropdownProp): JSX.Element {
           disabled={true}
           style={{ color: "black", fontWeight: "bold" }}
         >
-          {logedInUser.FullName}
+          {prop.logedInUser?.FullName}
         </Dropdown.Item>
         <Dropdown.Item disabled={true} style={{ color: "gray" }}>
-          Student at {logedInUser.College}
+          Student at {prop.logedInUser?.College}
         </Dropdown.Item>
         <DropdownDivider />
         <Dropdown.Item data-testid="settings">
-          {<Link to={"/settings/" + logedInUser.Email}>Settings</Link>}
+          {<Link to={"/settings/" + prop.logedInUser.Email}>Settings</Link>}
         </Dropdown.Item>
         <Dropdown.Item onClick={() => logout}>Sign Out</Dropdown.Item>
       </Dropdown.Menu>
