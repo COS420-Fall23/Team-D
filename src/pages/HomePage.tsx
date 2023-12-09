@@ -12,6 +12,7 @@ export function HomePage(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterLocation, setFilterLocation] = useState("");
   const [filterType, setFilterType] = useState("");
+  const [refresh, setRefresh] = useState(false);
 
   const dummyListings = getDummyJobListings()
     .filter(
@@ -28,8 +29,6 @@ export function HomePage(): JSX.Element {
     );
 
   const logdInUserID = -1;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
   const getFilterOptions = (field: string): string[] => {
     const options = new Set<string>();
@@ -42,13 +41,17 @@ export function HomePage(): JSX.Element {
     });
     return Array.from(options);
   };
+  console.log("home-page load. UserEmail=", auth.currentUser?.email);
 
   return (
     <div>
       <header>
         <h1>College Jobs</h1>
-        <ProfileDropDownButton userID={logdInUserID}></ProfileDropDownButton>
-        <LoginButton></LoginButton>
+        {auth.currentUser?.email !== undefined && <ProfileDropDownButton userID={logdInUserID}></ProfileDropDownButton>}
+        {/* update refresh state to force rerender when user logs in  */}
+        <Button onClick={() => setRefresh(!refresh)}>Refresh</Button>
+        {/* pass refresh and setRefresh to */}
+        <LoginButton refresh={refresh} setRefresh={setRefresh} ></LoginButton>
       </header>
 
       <div className="searchAndFilter">
