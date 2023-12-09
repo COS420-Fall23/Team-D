@@ -5,8 +5,7 @@ export function getDummyUsers(): User[] {
 
   dummyUsers.push({
     id: "-1",
-    FirstName: "Kaleb",
-    LastName: "Hannan",
+    FullName: "Kaleb Hannan",
     Email: "kaleb.hannan@maine.edu",
     phoneNumber: "(207)111-9999",
     College: "UMaine Orono",
@@ -17,8 +16,7 @@ export function getDummyUsers(): User[] {
 
   dummyUsers.push({
     id: "-2",
-    FirstName: "Austin",
-    LastName: "Hannan",
+    FullName: "Austin Hannan",
     Email: "ahannan@gmail.com",
     phoneNumber: "(207)222-8888",
     College: "CMCC",
@@ -29,8 +27,7 @@ export function getDummyUsers(): User[] {
 
   dummyUsers.push({
     id: "-3",
-    FirstName: "John",
-    LastName: "Dow",
+    FullName: "John Dow",
     Email: "jDow123@gmail.com",
     phoneNumber: "(207)333-7777",
     College: "Harvard",

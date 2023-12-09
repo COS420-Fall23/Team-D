@@ -33,8 +33,7 @@ export function LoginButton(prop: LoginButtonProp): JSX.Element {
     } else {
       DBUser = {
         id: FireBaseUser.data().id,
-        FirstName: FireBaseUser.data().FirstName,
-        LastName: FireBaseUser.data().LastName,
+        FullName: FireBaseUser.data().FullName,
         Email: FireBaseUser.data().Email,
         phoneNumber: FireBaseUser.data().phoneNumber,
         College: FireBaseUser.data().College,

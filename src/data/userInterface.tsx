@@ -2,8 +2,7 @@ import { JobListing } from "./job_listing";
 
 export interface User {
   id: string;
-  FirstName: string;
-  LastName: string;
+  FullName: string;
   Email: string;
   phoneNumber: string;
   College: string;

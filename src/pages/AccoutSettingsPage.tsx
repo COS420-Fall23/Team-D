@@ -9,7 +9,7 @@ import { db } from "../firebaseConfig";
 
 export function AccountSettingsPage(): JSX.Element {
   const params = useParams();
-  const userEmail = params.listingId;
+  const userEmail = params.userEmail;
   const [value] = useCollection(collection(db, "User"));
 
   const FireBaseUser = value?.docs.find(
@@ -17,13 +17,13 @@ export function AccountSettingsPage(): JSX.Element {
   );
   const logedInUser: User = {
     id: FireBaseUser?.data().id,
-    FirstName: FireBaseUser?.data().FirstName,
-    LastName: FireBaseUser?.data().LastName,
+    FullName: FireBaseUser?.data().FullName,
     Email: FireBaseUser?.data().Email,
     phoneNumber: FireBaseUser?.data().phoneNumber,
     College: FireBaseUser?.data().College,
     DOB: FireBaseUser?.data().DOB,
     SavedJobs: FireBaseUser?.data().SavedJobs,
+    Location: FireBaseUser?.data().Location,
   };
   return (
     <div>

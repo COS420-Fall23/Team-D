@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { ListingView } from "../components/ListingView";
 import { ProfileDropDownButton } from "../components/ProfileDropdown";
 import { JobListing } from "../data/job_listing";
@@ -10,13 +10,13 @@ import { User } from "../data/userInterface";
 export function HomePage(): JSX.Element {
   let user: User = {
     id: "",
-    FirstName: "",
-    LastName: "",
+    FullName: "",
     Email: "",
     phoneNumber: "",
     College: "",
     DOB: "",
     SavedJobs: [],
+    Location: "",
   };
   const [searchTerm, setSearchTerm] = useState("");
   const [filterLocation, setFilterLocation] = useState("");
@@ -54,13 +54,16 @@ export function HomePage(): JSX.Element {
     <div>
       <header>
         <h1>College Jobs</h1>
-        <ProfileDropDownButton
-          logedInUser={logedinUser}
-        ></ProfileDropDownButton>
-        <LoginButton
-          setLogin={setLogin}
-          setLoginUser={setLoginUser}
-        ></LoginButton>
+        {isLogedIn ? (
+          <ProfileDropDownButton
+            logedInUser={logedinUser}
+          ></ProfileDropDownButton>
+        ) : (
+          <LoginButton
+            setLogin={setLogin}
+            setLoginUser={setLoginUser}
+          ></LoginButton>
+        )}
       </header>
 
       <div className="searchAndFilter">

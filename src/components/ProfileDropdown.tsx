@@ -18,7 +18,7 @@ export function ProfileDropDownButton(prop: ProfileDropdownProp): JSX.Element {
           disabled={true}
           style={{ color: "black", fontWeight: "bold" }}
         >
-          {prop.logedInUser?.FirstName + " " + prop.logedInUser.LastName}
+          {prop.logedInUser?.FullName}
         </Dropdown.Item>
         <Dropdown.Item disabled={true} style={{ color: "gray" }}>
           Student at {prop.logedInUser?.College}
