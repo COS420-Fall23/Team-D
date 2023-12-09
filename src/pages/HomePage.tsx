@@ -6,6 +6,7 @@ import { JobListing } from "../data/job_listing";
 import { getDummyJobListings } from "../dummy/job_listing";
 import { auth } from "../firebaseConfig";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { LoginButton } from "../components/LoginButton";
 
 export function HomePage(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
@@ -47,7 +48,7 @@ export function HomePage(): JSX.Element {
       <header>
         <h1>College Jobs</h1>
         <ProfileDropDownButton userID={logdInUserID}></ProfileDropDownButton>
-        <Button onClick={() => signInWithGoogle()}>Login</Button>
+        <LoginButton></LoginButton>
       </header>
 
       <div className="searchAndFilter">
