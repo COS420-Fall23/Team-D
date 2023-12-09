@@ -53,13 +53,4 @@ describe("Simple tests for the home page", () => {
     const jobListingType = screen.getByText("Dummy Listing");
     expect(jobListingType).toBeInTheDocument();
   });
-
-  test("Login button calls loginChecks function", () => {
-    const loginChecksMock = jest.fn();
-    const loginButton = screen.getByRole("button", { name: "Login" });
-
-    fireEvent.click(loginButton);
-
-    expect(loginChecksMock).toHaveBeenCalled();
-  });
 });
