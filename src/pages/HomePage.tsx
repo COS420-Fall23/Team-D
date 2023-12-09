@@ -5,24 +5,18 @@ import { ProfileDropDownButton } from "../components/ProfileDropdown";
 import { JobListing } from "../data/job_listing";
 import { getDummyJobListings } from "../dummy/job_listing";
 import { LoginButton } from "../components/LoginButton";
-import { User } from "../data/userInterface";
 
-export function HomePage(): JSX.Element {
-  let user: User = {
-    id: "",
-    FullName: "",
-    Email: "",
-    phoneNumber: "",
-    College: "",
-    DOB: "",
-    SavedJobs: [],
-    Location: "",
-  };
+export interface HomePageProp {
+  userEmail: string;
+  isLogedIn: boolean;
+  setLoginUser: (setLoginUser: string) => void;
+  setLogin: (newLogin: boolean) => void;
+}
+
+export function HomePage(prop: HomePageProp): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterLocation, setFilterLocation] = useState("");
   const [filterType, setFilterType] = useState("");
-  const [isLogedIn, setLogin] = useState(false);
-  const [logedinUser, setLoginUser] = useState(user);
 
   const dummyListings = getDummyJobListings()
     .filter(
@@ -54,14 +48,14 @@ export function HomePage(): JSX.Element {
     <div>
       <header>
         <h1>College Jobs</h1>
-        {isLogedIn ? (
+        {prop.isLogedIn ? (
           <ProfileDropDownButton
-            logedInUser={logedinUser}
+            logedInUser={prop.userEmail}
           ></ProfileDropDownButton>
         ) : (
           <LoginButton
-            setLogin={setLogin}
-            setLoginUser={setLoginUser}
+            setLogin={prop.setLogin}
+            setLoginUser={prop.setLoginUser}
           ></LoginButton>
         )}
       </header>

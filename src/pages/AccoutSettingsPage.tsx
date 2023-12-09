@@ -30,7 +30,7 @@ export function AccountSettingsPage(): JSX.Element {
       <header>
         <h1>College Jobs</h1>
         <ProfileDropDownButton
-          logedInUser={logedInUser}
+          logedInUser={logedInUser.Email}
         ></ProfileDropDownButton>
       </header>
       <h1>Account Settings</h1>
