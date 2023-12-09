@@ -48,7 +48,7 @@ export function RegisterPage(): JSX.Element {
         // Add form submission logic here
         console.log("form submitted")
         // add the user to the database
-        const docRef = collection(db, "users");
+        const docRef = collection(db, "User");
         const payload = {
             fullName: fullName,
             phoneNumber: phoneNumber,
@@ -65,6 +65,8 @@ export function RegisterPage(): JSX.Element {
             .catch((error) => {
                 console.error("Error adding document: ", error);
             });
+        // redirect to home page
+        navigate("/");
     };
 
     const validateForm = () => {
@@ -77,7 +79,7 @@ export function RegisterPage(): JSX.Element {
     //console.log(email);
     
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [value, loading, error] = useCollection(collection(db, "users"));
+    const [value, loading, error] = useCollection(collection(db, "User"));
     const firebaseUser = value?.docs.find((doc) => doc.data().email === email);
     if (firebaseUser !== undefined) {
         //console.log("user found in database");

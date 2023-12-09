@@ -8,9 +8,9 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
 
 export function LoginButton(): JSX.Element {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const provider = new GoogleAuthProvider();
-    const [value, loading, error] = useCollection( collection(db, "users") );
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [value, loading, error] = useCollection( collection(db, "User") );
     let navigate = useNavigate();
 
     const signInWithGoogle = () => {
@@ -22,13 +22,13 @@ export function LoginButton(): JSX.Element {
             if (credential === null) {
                 throw new Error("credential is null");
             }
-            const token = credential.accessToken;
+            //const token = credential.accessToken;
             // The signed-in user info.
-            const user = result.user;
+            const gAuthUser = result.user;
             // check if user exists in database
             // if not, redirect to register page
             
-            const firebaseUser = value?.docs.find((doc) => doc.data().email === user.email);
+            const firebaseUser = value?.docs.find((doc) => doc.data().email === gAuthUser.email);
             if (firebaseUser === undefined) {
                 console.log("user not found in database");
                 // redirect to register page
@@ -37,8 +37,8 @@ export function LoginButton(): JSX.Element {
             }
             console.log(firebaseUser);
             console.log("user signed in");
-            console.log(user);
-            console.log(user.email);
+            console.log(gAuthUser);
+            console.log(gAuthUser.email);
 
         }).catch((error) => {
             // Handle Errors here.
