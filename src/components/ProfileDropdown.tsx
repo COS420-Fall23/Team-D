@@ -3,13 +3,20 @@ import { Link } from "react-router-dom";
 import { User } from "../data/userInterface";
 import { collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { db } from "../firebaseConfig";
+import { auth, db } from "../firebaseConfig";
 
 export interface ProfileDropdownProp {
   logedInUser: string;
+  setLoginUser: (setLoginUser: string) => void;
+  setLogin: (newLogin: boolean) => void;
 }
 
 export function ProfileDropDownButton(prop: ProfileDropdownProp): JSX.Element {
+  function logout(): void {
+    prop.setLogin(false);
+    prop.setLoginUser("");
+    auth.signOut();
+  }
   let logedInUser: User;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [value, CollegtionLoading, CollectionError] = useCollection(
@@ -62,9 +69,7 @@ export function ProfileDropDownButton(prop: ProfileDropdownProp): JSX.Element {
         <Dropdown.Item data-testid="settings">
           {<Link to={"/settings/" + logedInUser.Email}>Settings</Link>}
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => <div>this will change</div>}>
-          Sign Out
-        </Dropdown.Item>
+        <Dropdown.Item onClick={() => logout}>Sign Out</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

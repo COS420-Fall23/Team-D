@@ -51,6 +51,8 @@ export function HomePage(prop: HomePageProp): JSX.Element {
         {prop.isLogedIn ? (
           <ProfileDropDownButton
             logedInUser={prop.userEmail}
+            setLoginUser={prop.setLoginUser}
+            setLogin={prop.setLogin}
           ></ProfileDropDownButton>
         ) : (
           <LoginButton

@@ -23,7 +23,16 @@ export const AppRouter = () => {
           }
         />
         <Route path="/listing/:listingId" element={<ListingPage />} />
-        <Route path="/settings/:userEmail" element={<AccountSettingsPage />} />
+        <Route
+          path="/settings/:userEmail"
+          element={
+            <AccountSettingsPage
+              logedInUser={logedinUser}
+              setLoginUser={setLoginUser}
+              setLogin={setLogin}
+            />
+          }
+        />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </Router>

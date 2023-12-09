@@ -7,7 +7,13 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { collection } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
-export function AccountSettingsPage(): JSX.Element {
+export interface AccountSettingsProp {
+  logedInUser: string;
+  setLoginUser: (setLoginUser: string) => void;
+  setLogin: (newLogin: boolean) => void;
+}
+
+export function AccountSettingsPage(prop: AccountSettingsProp): JSX.Element {
   const params = useParams();
   const userEmail = params.userEmail;
   const [value] = useCollection(collection(db, "User"));
@@ -31,6 +37,8 @@ export function AccountSettingsPage(): JSX.Element {
         <h1>College Jobs</h1>
         <ProfileDropDownButton
           logedInUser={logedInUser.Email}
+          setLoginUser={prop.setLoginUser}
+          setLogin={prop.setLogin}
         ></ProfileDropDownButton>
       </header>
       <h1>Account Settings</h1>
