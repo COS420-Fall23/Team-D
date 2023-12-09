@@ -24,6 +24,9 @@ export function ProfileDropDownButton(prop: ProfileDropdownProp): JSX.Element {
           Student at {prop.logedInUser?.College}
         </Dropdown.Item>
         <DropdownDivider />
+        <Dropdown.Item data-testid="savedJobs">
+          {<Link to={"/savedJobs/" + prop.logedInUser.Email}>Saved Jobs</Link>}
+        </Dropdown.Item>
         <Dropdown.Item data-testid="settings">
           {<Link to={"/settings/" + prop.logedInUser.Email}>Settings</Link>}
         </Dropdown.Item>
