@@ -1,5 +1,9 @@
 import { useState } from "react";
 import "../register_page.css";
+import { auth, db } from "../firebaseConfig";
+import { collection, getFirestore } from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { useNavigate } from "react-router-dom";
 
 export function RegisterPage(): JSX.Element {
     // This was generated using github copilot
@@ -9,6 +13,7 @@ export function RegisterPage(): JSX.Element {
     const [dob, setDob] = useState("");
     const [location, setLocation] = useState("");
     const [isFormValid, setIsFormValid] = useState(false);
+    let navigate = useNavigate();
 
     const handleFullNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFullName(event.target.value);
@@ -43,6 +48,19 @@ export function RegisterPage(): JSX.Element {
     const validateForm = () => {
         setIsFormValid(fullName !== "");
     };
+
+    // get the user's email from firebase auth and check if the user exists in the database
+    const email = auth.currentUser?.email;
+    console.log("email from registyer page");
+    console.log(email);
+    const [value, loading, error] = useCollection(collection(db, "users"));
+    const firebaseUser = value?.docs.find((doc) => doc.data().email === email);
+    if (firebaseUser !== undefined) {
+        console.log("user found in database");
+        // redirect to home page
+        
+        navigate("/");
+    }
 
     return (
         <div id="registerPage">
