@@ -55,7 +55,8 @@ export function RegisterPage(): JSX.Element {
             college: college,
             dob: dob,
             location: location,
-            email: auth.currentUser?.email
+            email: auth.currentUser?.email,
+            saved_jobs: [""]
         };
         addDoc(docRef, payload)
             .then((docRef) => {
