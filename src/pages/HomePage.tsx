@@ -1,28 +1,35 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { ProfileDropDownButton } from "../components/ProfileDropdown";
-import { getDummyJobListings } from "../dummy/job_listing";
 import { auth } from "../firebaseConfig";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { JobList } from "../components/JobList";
 import { SearchAndFilter } from "../components/SearchAndFilter";
+import { JobListing } from "../data/job_listing";
 
-export function HomePage(): JSX.Element {
+export function HomePage({
+    listings,
+}: {
+    listings: JobListing[];
+}): JSX.Element {
     const [searchTerm, setSearchTerm] = useState("");
     const [filterLocation, setFilterLocation] = useState("");
 
-    const dummyListings = getDummyJobListings()
+    const dummyListings = listings
         .filter(
             (listing) =>
+                searchTerm === "" ||
                 listing.company
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase()) ||
                 listing.title.toLowerCase().includes(searchTerm.toLowerCase())
         )
-        .filter((listing) =>
-            listing.location
-                .toLowerCase()
-                .includes(filterLocation.toLowerCase())
+        .filter(
+            (listing) =>
+                filterLocation === "" ||
+                listing.location
+                    .toLowerCase()
+                    .includes(filterLocation.toLowerCase())
         );
 
     const logdInUserID = -1;

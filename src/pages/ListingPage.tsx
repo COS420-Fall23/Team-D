@@ -1,13 +1,16 @@
 import { useParams } from "react-router-dom";
-import { getDummyJobListings } from "../dummy/job_listing";
 import { JobListing } from "../data/job_listing";
 import { Col, Row } from "react-bootstrap";
 
-export function ListingPage(): JSX.Element {
+export function ListingPage({
+    listings,
+}: {
+    listings: JobListing[];
+}): JSX.Element {
     const params = useParams();
     const listingId = Number(params.listingId);
 
-    const jobListing = getDummyJobListings().find(
+    const jobListing = listings.find(
         (value: JobListing): boolean => value.id === listingId
     );
     // TODO pull listings from firebase
