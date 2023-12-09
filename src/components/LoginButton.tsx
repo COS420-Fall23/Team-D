@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { User } from "../data/userInterface";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { auth, db } from "../firebaseConfig";
+import { db } from "../firebaseConfig";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection } from "firebase/firestore";
+import { signInWithGooglePopup } from "../firebaseConfig";
 
 export interface LoginButtonProp {
   setLoginUser: (setLoginUser: User) => void;
@@ -12,18 +12,22 @@ export interface LoginButtonProp {
 }
 
 export function LoginButton(prop: LoginButtonProp): JSX.Element {
-  const [signInWithGoogle, user] = useSignInWithGoogle(auth);
-  const [value] = useCollection(collection(db, "User"));
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [value, CollegtionLoading, CollectionError] = useCollection(
+    collection(db, "User")
+  );
   let navigate = useNavigate();
   let DBUser: User;
 
   async function loginchecks(): Promise<void> {
-    await signInWithGoogle();
+    const response = await signInWithGooglePopup();
+    console.log(response.user.uid);
 
     const FireBaseUser = value?.docs.find(
-      (User): boolean => User.data().Email === user?.user.email
+      (User): boolean => User.data().Email === response.user.email
     );
-
+    value?.docs.map((obj) => console.log("DB Email " + obj.data().Email));
+    console.log("Google Email " + response.user.email);
     if (FireBaseUser === undefined) {
       navigate("/register");
     } else {
@@ -35,6 +39,7 @@ export function LoginButton(prop: LoginButtonProp): JSX.Element {
         phoneNumber: FireBaseUser.data().phoneNumber,
         College: FireBaseUser.data().College,
         DOB: FireBaseUser.data().DOB,
+        Location: FireBaseUser.data().Location,
         SavedJobs: FireBaseUser.data().SavedJobs,
       };
     }

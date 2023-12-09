@@ -12,6 +12,7 @@ export function getDummyUsers(): User[] {
     College: "UMaine Orono",
     DOB: "N/A",
     SavedJobs: [],
+    Location: "",
   });
 
   dummyUsers.push({
@@ -23,6 +24,7 @@ export function getDummyUsers(): User[] {
     College: "CMCC",
     DOB: "N/A",
     SavedJobs: [],
+    Location: "",
   });
 
   dummyUsers.push({
@@ -34,6 +36,7 @@ export function getDummyUsers(): User[] {
     College: "Harvard",
     DOB: "N/A",
     SavedJobs: [],
+    Location: "",
   });
 
   return dummyUsers;

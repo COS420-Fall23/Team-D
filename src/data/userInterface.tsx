@@ -8,5 +8,6 @@ export interface User {
   phoneNumber: string;
   College: string;
   DOB: string;
+  Location: string;
   SavedJobs: Array<JobListing>;
 }
