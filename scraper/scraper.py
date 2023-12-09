@@ -29,7 +29,7 @@ for job in jobs:
         'title': job['title'],
         'company': job['company'],
         'description': job['description'],
-        'criteria': [{'field': "Location", 'value': job['location']}]
+        'location': job['location']
     }
     doc = collection.document()
     doc.set(fjob)
