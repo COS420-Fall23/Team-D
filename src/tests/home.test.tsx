@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "../App";
+import { HomePage } from "../pages/HomePage";
 
 describe("Simple tests for the home page", () => {
   beforeEach(() => {
@@ -21,12 +22,6 @@ describe("Simple tests for the home page", () => {
   test("At least one listing is present", () => {
     const listings = screen.getAllByText("See More");
     expect(listings.length).toBeGreaterThan(0);
-  });
-
-  test("Profile dropdown is present", () => {
-    const ProfileDropdown = screen.getByTestId("profileDropdown");
-
-    expect(ProfileDropdown).toBeInTheDocument();
   });
 
   test("Displays job listings based on search term", () => {
@@ -58,5 +53,14 @@ describe("Simple tests for the home page", () => {
 
     const jobListingType = screen.getByText("Dummy Listing");
     expect(jobListingType).toBeInTheDocument();
+  });
+
+  test("Login button calls loginChecks function", () => {
+    const loginChecksMock = jest.fn();
+    const loginButton = screen.getByRole("button", { name: "Login" });
+
+    fireEvent.click(loginButton);
+
+    expect(loginChecksMock).toHaveBeenCalled();
   });
 });
