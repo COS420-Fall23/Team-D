@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../register_page.css";
 import { auth, db } from "../firebaseConfig";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
 
