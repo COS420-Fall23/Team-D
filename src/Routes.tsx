@@ -10,22 +10,24 @@ import { useState } from "react";
 
 export const AppRouter = () => {
     const [stateListings, setStateListings] = useState<JobListing[]>([]);
-    const query = getDocs(collection(db, "JobListing"));
+    if (stateListings.length === 0) {
+        const query = getDocs(collection(db, "JobListing"));
 
-    const listings: JobListing[] = [];
-    query.then((snapshot) => {
-        snapshot.forEach((doc) => {
-            listings.push({
-                id: doc.get("id"),
-                url: doc.get("url"),
-                company: doc.get("company"),
-                title: doc.get("title"),
-                description: doc.get("description"),
-                location: doc.get("location"),
+        const listings: JobListing[] = [];
+        query.then((snapshot) => {
+            snapshot.forEach((doc) => {
+                listings.push({
+                    id: doc.get("id"),
+                    url: doc.get("url"),
+                    company: doc.get("company"),
+                    title: doc.get("title"),
+                    description: doc.get("description"),
+                    location: doc.get("location"),
+                });
+                setStateListings(listings);
             });
-            setStateListings(listings);
         });
-    });
+    }
 
     return (
         <Router>
