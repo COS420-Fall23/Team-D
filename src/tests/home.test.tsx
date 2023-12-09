@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "../App";
-import { HomePage } from "../pages/HomePage";
 
 describe("Simple tests for the home page", () => {
   beforeEach(() => {
