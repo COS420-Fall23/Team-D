@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { ListingView } from "../components/ListingView";
-import { ProfileDropDownButton } from "../components/ProfileDropdown";
 import { JobListing } from "../data/job_listing";
 import { getDummyJobListings } from "../dummy/job_listing";
 import { LoginButton } from "../components/LoginButton";
 import { auth } from "../firebaseConfig";
+import { HomeProfileDropDownButton } from "../components/HomePageProfileDropdown";
 
 export function HomePage(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
@@ -44,7 +44,10 @@ export function HomePage(): JSX.Element {
       <header>
         <h1>College Jobs</h1>
         {auth.currentUser ? (
-          <ProfileDropDownButton></ProfileDropDownButton>
+          <HomeProfileDropDownButton
+            refresh={refresh}
+            setRefresh={setRefresh}
+          ></HomeProfileDropDownButton>
         ) : (
           <LoginButton refresh={refresh} setRefresh={setRefresh}></LoginButton>
         )}
