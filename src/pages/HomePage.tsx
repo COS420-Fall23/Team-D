@@ -51,7 +51,7 @@ export function HomePage(): JSX.Element {
         <Button onClick={() => signInWithGoogle()}>Login</Button>
       </header>
       <div>
-        <Link to="/resource-page">
+        <Link to="/resources">
           <Button>Resource Page</Button>
         </Link>
       </div>
