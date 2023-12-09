@@ -1,9 +1,12 @@
 import { useState } from "react";
 import "../register_page.css";
 import { auth, db } from "../firebaseConfig";
-import { collection, getFirestore } from "firebase/firestore";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
+
+
+
 
 export function RegisterPage(): JSX.Element {
     // This was generated using github copilot
@@ -43,6 +46,24 @@ export function RegisterPage(): JSX.Element {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // Add form submission logic here
+        console.log("form submitted")
+        // add the user to the database
+        const docRef = collection(db, "users");
+        const payload = {
+            fullName: fullName,
+            phoneNumber: phoneNumber,
+            college: college,
+            dob: dob,
+            location: location,
+            email: auth.currentUser?.email
+        };
+        addDoc(docRef, payload)
+            .then((docRef) => {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+            });
     };
 
     const validateForm = () => {
@@ -51,12 +72,14 @@ export function RegisterPage(): JSX.Element {
 
     // get the user's email from firebase auth and check if the user exists in the database
     const email = auth.currentUser?.email;
-    console.log("email from registyer page");
-    console.log(email);
+    //console.log("email from registyer page");
+    //console.log(email);
+    
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [value, loading, error] = useCollection(collection(db, "users"));
     const firebaseUser = value?.docs.find((doc) => doc.data().email === email);
     if (firebaseUser !== undefined) {
-        console.log("user found in database");
+        //console.log("user found in database");
         // redirect to home page
         
         navigate("/");
