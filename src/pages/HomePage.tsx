@@ -39,11 +39,11 @@ export function HomePage({
             console.log("user is not signed in");
         }
     });
-
+    
     return (
         <div>
             <Header></Header>
-
+            
             <SearchAndFilter
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}

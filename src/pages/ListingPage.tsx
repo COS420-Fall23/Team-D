@@ -3,9 +3,9 @@ import { JobListing } from "../data/job_listing";
 import { Button, Col, Row } from "react-bootstrap";
 import { Header } from "../components/Header";
 export function ListingPage({
-    listings,
+  listings,
 }: {
-    listings: JobListing[];
+  listings: JobListing[];
 }): JSX.Element {
   const params = useParams();
   const listingId = Number(params.listingId);
@@ -19,18 +19,30 @@ export function ListingPage({
   }
 
   return (
-    <div>
+    <div className="listing-page">
       <Header></Header>
-      <h1>{jobListing.company}</h1>
-      <h2>{jobListing.title}</h2>
-      <p>{jobListing.description}</p>
-       <Row>
-                <Col>Location</Col>
-                <Col>{jobListing.location}</Col>
-            </Row>
-      <a href={jobListing.url}>
-        <Button>Apply</Button>
-      </a>
+      <div className="blue-left">
+        <div className="home-button">
+          <Link to="/">
+            <Button variant="success">Home</Button>
+          </Link>
+        </div>
+      </div>
+      <div className="content">
+        <h1>{jobListing.company}</h1>
+        <h2>{jobListing.title}</h2>
+        <p>{jobListing.description}</p>
+
+        <Row>
+          <Col>Location</Col>
+          <Col>{jobListing.location}</Col>
+        </Row>
+        <div className="apply-button">
+          <a href={jobListing.url}>
+            <Button>Apply</Button>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
