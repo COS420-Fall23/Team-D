@@ -37,7 +37,12 @@ export function EditPhonenumber(prop: EditPhonenumberProp): JSX.Element {
           </Button>
         </InputGroup>
       ) : (
-        <Button onClick={() => setvisible(true)}>Edit Phone Number</Button>
+        <Button
+          data-testid="Edit Phone Number"
+          onClick={() => setvisible(true)}
+        >
+          Edit Phone Number
+        </Button>
       )}
     </div>
   );

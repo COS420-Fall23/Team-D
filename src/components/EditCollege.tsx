@@ -34,7 +34,9 @@ export function EditCollege(prop: EditCollegeProp): JSX.Element {
           </Button>
         </InputGroup>
       ) : (
-        <Button onClick={() => setvisible(true)}>Edit College</Button>
+        <Button data-testid="Edit College" onClick={() => setvisible(true)}>
+          Edit College
+        </Button>
       )}
     </div>
   );

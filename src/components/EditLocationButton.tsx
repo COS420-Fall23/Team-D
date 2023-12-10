@@ -34,7 +34,9 @@ export function EditLocation(prop: EditLocationProp): JSX.Element {
           </Button>
         </InputGroup>
       ) : (
-        <Button onClick={() => setvisible(true)}>Edit Location</Button>
+        <Button data-testid="Edit Location" onClick={() => setvisible(true)}>
+          Edit Location
+        </Button>
       )}
     </div>
   );

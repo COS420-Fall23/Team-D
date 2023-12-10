@@ -29,6 +29,7 @@ export function EditFullName(prop: EditFullNameProp): JSX.Element {
       {visible ? (
         <InputGroup className="mb-3">
           <Form.Control
+            data-testid="FullNameInput"
             placeholder="Enter Full Name"
             onChange={handleFullNameChange}
           />
@@ -37,7 +38,9 @@ export function EditFullName(prop: EditFullNameProp): JSX.Element {
           </Button>
         </InputGroup>
       ) : (
-        <Button onClick={() => setvisible(true)}>Edit Full Name</Button>
+        <Button data-testid="Edit Full Name" onClick={() => setvisible(true)}>
+          Edit Full Name
+        </Button>
       )}
     </div>
   );
