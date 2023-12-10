@@ -7,7 +7,6 @@ import { JobListing } from "../data/job_listing";
 import { HomeProfileDropDownButton } from "../components/HomePageProfileDropdown";
 import { LoginButton } from "../components/LoginButton";
 import MyButtonLink from "../components/MyButtonLink";
-import { Link } from "react-router-dom";
 
 export function HomePage({
   listings,
