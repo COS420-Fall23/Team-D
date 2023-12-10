@@ -12,6 +12,7 @@ import { JobList } from "../components/JobList";
 import { JobListing } from "../data/job_listing";
 import { useState } from "react";
 import { ListingView } from "../components/ListingView";
+import { ProfileDropDownButton } from "../components/ProfileDropdown";
 
 export function SavedJobsPage(): JSX.Element {
   const [value] = useCollection(collection(db, "User"));
@@ -29,6 +30,10 @@ export function SavedJobsPage(): JSX.Element {
   }
   return (
     <div>
+      <header>
+        <h1>College Jobs</h1>
+        <ProfileDropDownButton></ProfileDropDownButton>
+      </header>
       {FireBaseUser.data()?.saved_jobs.length === 0 ? (
         <h1>No Saved Jobs</h1>
       ) : (
