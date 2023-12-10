@@ -7,6 +7,7 @@ import { getDummyJobListings } from "../dummy/job_listing";
 import { auth } from "../firebaseConfig";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import { HomeProfileDropDownButton } from "../components/HomePageProfileDropdown";
 
 export function HomePage(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
