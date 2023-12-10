@@ -20,9 +20,6 @@ export function ListingView({ listing }: ListingViewProps): JSX.Element {
         <Button>See More</Button>
       </Link>
 
-      <Link to={"/listing/" + listing.id}>
-        <Button>See More</Button>
-      </Link>
       <Link to={listing.url}>
         <Button>Apply</Button>
       </Link>
