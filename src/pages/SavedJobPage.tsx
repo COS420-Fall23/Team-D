@@ -1,13 +1,20 @@
-import { collection, doc, getDocs } from "firebase/firestore";
+import {
+  DocumentData,
+  DocumentSnapshot,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+} from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { auth, db } from "../firebaseConfig";
 import { JobList } from "../components/JobList";
 import { JobListing } from "../data/job_listing";
 import { useState } from "react";
+import { ListingView } from "../components/ListingView";
 
 export function SavedJobsPage(): JSX.Element {
   const [value] = useCollection(collection(db, "User"));
-  const [stateListings, setStateListings] = useState<JobListing[]>([]);
 
   const FireBaseUser = value?.docs.find(
     (user): boolean => user.data().Email === auth.currentUser?.email
@@ -20,34 +27,14 @@ export function SavedJobsPage(): JSX.Element {
   ) {
     return <h1>Error</h1>;
   }
-
-  const userDoc = doc(db, "User", userEmail);
-
-  if (stateListings.length === 0) {
-    const query = getDocs(collection(userDoc, "saved_jobs"));
-
-    const listings: JobListing[] = [];
-    query.then((snapshot) => {
-      snapshot.forEach((doc) => {
-        listings.push({
-          id: doc.get("id"),
-          url: doc.get("url"),
-          company: doc.get("company"),
-          title: doc.get("title"),
-          description: doc.get("description"),
-          location: doc.get("location"),
-        });
-        setStateListings(listings);
-      });
-    });
-  }
-
   return (
     <div>
-      {stateListings.length === 0 ? (
+      {FireBaseUser.data()?.saved_jobs.length === 0 ? (
         <h1>No Saved Jobs</h1>
       ) : (
-        <JobList listings={stateListings}></JobList>
+        FireBaseUser.data()?.saved_jobs.map((listing: JobListing) => (
+          <ListingView listing={listing} isSaved={true}></ListingView>
+        ))
       )}
     </div>
   );
