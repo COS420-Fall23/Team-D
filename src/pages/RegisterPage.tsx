@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../register_page.css";
 import { auth, db } from "../firebaseConfig";
-import { addDoc, collection } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ export function RegisterPage(): JSX.Element {
     const [dob, setDob] = useState("");
     const [location, setLocation] = useState("");
     const [isFormValid, setIsFormValid] = useState(false);
-    let navigate = useNavigate();
+    let navigate = useNavigate(); // used to redirect to home page
 
     const handleFullNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFullName(event.target.value);
@@ -48,23 +48,20 @@ export function RegisterPage(): JSX.Element {
         // Add form submission logic here
         console.log("form submitted")
         // add the user to the database
-        const docRef = collection(db, "User");
         const payload = {
             fullName: fullName,
             phoneNumber: phoneNumber,
             college: college,
             dob: dob,
             location: location,
-            email: auth.currentUser?.email,
+            //email: auth.currentUser?.email,
             saved_jobs: [""]
         };
-        addDoc(docRef, payload)
-            .then((docRef) => {
-                console.log("Document written with ID: ", docRef.id);
-            })
-            .catch((error) => {
-                console.error("Error adding document: ", error);
-            });
+        let id = auth.currentUser?.email?.toString();
+        if (id === undefined) {
+            throw new Error("auth has no current user, which means auth is not initialized or no user logged in. This should not be possible");
+        }
+        setDoc(doc(db, "User", id), payload);
         // redirect to home page
         navigate("/");
     };
@@ -73,18 +70,13 @@ export function RegisterPage(): JSX.Element {
         setIsFormValid(fullName !== "");
     };
 
-    // get the user's email from firebase auth and check if the user exists in the database
+    // get the user's email from firebase auth, check if the user exists in the database, and redirect to home page if they do
     const email = auth.currentUser?.email;
-    //console.log("email from registyer page");
-    //console.log(email);
-    
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [value, loading, error] = useCollection(collection(db, "User"));
     const firebaseUser = value?.docs.find((doc) => doc.data().email === email);
     if (firebaseUser !== undefined) {
-        //console.log("user found in database");
-        // redirect to home page
-        
+        console.log("user found in database, redirecting to home page");
         navigate("/");
     }
 
