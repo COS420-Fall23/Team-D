@@ -9,10 +9,12 @@ import { useState } from "react";
 export function ProfileDropdown(prop: RefreshProp): JSX.Element {
   const [fullName, setFullName] = useState("Loading...");
   const [college, setCollege] = useState("Loading...");
+  const navigate = useNavigate();
 
   function logout(): void {
     auth.signOut();
     prop.setRefresh(!prop.refresh);
+    navigate("/");
   }
 
   async function getUser() {
