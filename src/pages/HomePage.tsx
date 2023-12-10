@@ -32,7 +32,6 @@ export function HomePage({
                     .toLowerCase()
                     .includes(filterLocation.toLowerCase())
         );
-    const logdInUserID = -1;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
