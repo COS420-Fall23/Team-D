@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { JobListing } from "../data/job_listing";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import { auth, db } from "../firebaseConfig";
 import {
   arrayRemove,
@@ -9,6 +9,7 @@ import {
   getDoc,
   updateDoc,
 } from "firebase/firestore";
+import { useState } from "react";
 
 export interface ListingViewProps {
   listing: JobListing;
@@ -17,7 +18,10 @@ export interface ListingViewProps {
 }
 
 //Button click to save a job to the user's profile
-async function saveJobClick(listing: JobListing): Promise<void> {
+async function saveJobClick(
+  listing: JobListing,
+  setShow: (show: boolean) => void
+): Promise<void> {
   const userEmail = auth.currentUser?.email;
   if (userEmail === null || userEmail === undefined) {
     return;
@@ -29,6 +33,7 @@ async function saveJobClick(listing: JobListing): Promise<void> {
     saved_jobs: arrayUnion(listing),
   });
   console.log(userDocData.data()?.saved_jobs);
+  setShow(true);
 }
 
 //Button click to unsave a job from a user profile
@@ -45,6 +50,7 @@ export function ListingView({
   listing,
   isSaved,
 }: ListingViewProps): JSX.Element {
+  const [show, setShow] = useState(false);
   return (
     <div className="listing">
       <h3>{listing.company}</h3>
@@ -61,8 +67,16 @@ export function ListingView({
         <Button>Apply</Button>
       </Link>
       <div>
+        <Alert
+          show={show}
+          variant="info"
+          onClose={() => setShow(false)}
+          dismissible
+        >
+          <Alert.Heading>Job Saved</Alert.Heading>
+        </Alert>
         {!isSaved ? (
-          <Button onClick={() => saveJobClick(listing)}>Save</Button>
+          <Button onClick={() => saveJobClick(listing, setShow)}>Save</Button>
         ) : (
           <Button variant="danger" onClick={() => unsaveJobClick(listing)}>
             Unsave
