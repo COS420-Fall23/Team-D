@@ -1,39 +1,53 @@
-import { User } from "../data/userInterface";
-import { JobListing } from "../data/job_listing";
-import { ListingView } from "../components/ListingView";
-import { collection } from "firebase/firestore";
+import { collection, doc, getDocs } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { db } from "../firebaseConfig";
-import { useParams } from "react-router-dom";
+import { auth, db } from "../firebaseConfig";
+import { JobList } from "../components/JobList";
+import { JobListing } from "../data/job_listing";
+import { useState } from "react";
 
 export function SavedJobsPage(): JSX.Element {
-  const params = useParams();
-  const userEmail = params.userEmail;
   const [value] = useCollection(collection(db, "User"));
+  const [stateListings, setStateListings] = useState<JobListing[]>([]);
 
   const FireBaseUser = value?.docs.find(
-    (user): boolean => user.data().Email === userEmail
+    (user): boolean => user.data().Email === auth.currentUser?.email
   );
-  const logedInUser: User = {
-    id: FireBaseUser?.data().id,
-    FullName: FireBaseUser?.data().FullName,
-    Email: FireBaseUser?.data().Email,
-    phoneNumber: FireBaseUser?.data().phoneNumber,
-    College: FireBaseUser?.data().College,
-    DOB: FireBaseUser?.data().DOB,
-    SavedJobs: FireBaseUser?.data().SavedJobs,
-    Location: FireBaseUser?.data().Location,
-  };
+  const userEmail = auth.currentUser?.email;
+  if (
+    FireBaseUser === undefined ||
+    userEmail === null ||
+    userEmail === undefined
+  ) {
+    return <h1>Error</h1>;
+  }
+
+  const userDoc = doc(db, "User", userEmail);
+
+  if (stateListings.length === 0) {
+    const query = getDocs(collection(userDoc, "saved_jobs"));
+
+    const listings: JobListing[] = [];
+    query.then((snapshot) => {
+      snapshot.forEach((doc) => {
+        listings.push({
+          id: doc.get("id"),
+          url: doc.get("url"),
+          company: doc.get("company"),
+          title: doc.get("title"),
+          description: doc.get("description"),
+          location: doc.get("location"),
+        });
+        setStateListings(listings);
+      });
+    });
+  }
+
   return (
     <div>
-      {logedInUser.SavedJobs.length === 0 ? (
+      {stateListings.length === 0 ? (
         <h1>No Saved Jobs</h1>
       ) : (
-        logedInUser.SavedJobs.map(
-          (listing: JobListing): JSX.Element => (
-            <ListingView key={listing.id} listing={listing} />
-          )
-        )
+        <JobList listings={stateListings}></JobList>
       )}
     </div>
   );

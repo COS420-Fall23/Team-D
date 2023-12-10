@@ -32,7 +32,7 @@ export function ProfileDropDownButton(): JSX.Element {
         </Dropdown.Item>
         <DropdownDivider />
         <Dropdown.Item data-testid="savedJobs">
-          {<Link to={"/savedJobs/" + prop.logedInUser.Email}>Saved Jobs</Link>}
+          {<Link to={"/savedJobs"}>Saved Jobs</Link>}
         </Dropdown.Item>
         <Dropdown.Item data-testid="settings">
           {<Link to={"/settings"}>Settings</Link>}
