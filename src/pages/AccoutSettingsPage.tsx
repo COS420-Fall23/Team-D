@@ -1,14 +1,13 @@
-import React from "react";
-<<<<<<< HEAD
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { User } from "../data/userInterface";
-=======
-import { Button } from "react-bootstrap";
->>>>>>> c17c1d8f70d8c7d99ebf6e68ba5d2b30d8f7d5fc
 import { ProfileDropDownButton } from "../components/ProfileDropdown";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection } from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
+import { EditFullName } from "../components/EditFullNamebutton";
+import { EditPhonenumber } from "../components/EditPhoneNumer";
+import { EditCollege } from "../components/EditCollege";
+import { EditLocation } from "../components/EditLocationButton";
 
 export function AccountSettingsPage(): JSX.Element {
   const [value] = useCollection(collection(db, "User"));
@@ -24,10 +23,27 @@ export function AccountSettingsPage(): JSX.Element {
         <ProfileDropDownButton></ProfileDropDownButton>
       </header>
       <h1>Account Settings</h1>
-      <div data-testid="Email">Email {logedInUser?.Email} </div>
-      <div data-testid="Phone">Phone {logedInUser?.phoneNumber}</div>
-      <div data-testid="College">College {logedInUser?.College}</div>
-      <div data-testid="Location">Location {logedInUser?.Location}</div>
+      <div data-testid="Email">
+        <div>Email: {FireBaseUser?.data().Email}</div>{" "}
+      </div>
+      <div data-testid="FullName">
+        <div>Full Name: {FireBaseUser?.data().Name}</div>
+        <EditFullName userEmail={FireBaseUser?.data().Email}></EditFullName>
+      </div>
+      <div data-testid="Phone">
+        <div>Phone: {FireBaseUser?.data().phoneNumber}</div>
+        <EditPhonenumber
+          userEmail={FireBaseUser?.data().Email}
+        ></EditPhonenumber>
+      </div>
+      <div data-testid="College">
+        <div>College: {FireBaseUser?.data().College}</div>
+        <EditCollege userEmail={FireBaseUser?.data().Email}></EditCollege>
+      </div>
+      <div data-testid="Location">
+        <div>Location: {FireBaseUser?.data().Location}</div>
+        <EditLocation userEmail={FireBaseUser?.data().Email}></EditLocation>
+      </div>
       <Form>
         <h2>Skills</h2>
         <Form.Group controlId="formBasicEmail">
@@ -35,13 +51,6 @@ export function AccountSettingsPage(): JSX.Element {
           <Form.Control type="text" placeholder="Enter Skill" />
         </Form.Group>
       </Form>
-      <div data-testid="Email">Email {FireBaseUser?.data().Email} </div>
-      <div>
-        Password <Button>ResetPassword</Button>
-      </div>
-      <div data-testid="Phone">Phone {FireBaseUser?.data().phoneNumber}</div>
-      <div>Site Filter</div>
-      <div>Job Keywords</div>
     </div>
   );
 }
