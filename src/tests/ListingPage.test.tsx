@@ -13,7 +13,7 @@ describe("ListingPage", () => {
     render(
       <MemoryRouter initialEntries={[`/listing/${listingId}`]}>
         <Routes>
-          <Route path="/listing/:listingId" element={<ListingPage />} />
+          <Route path="/listing/:listingId" element={<ListingPage listings={jobListings} />} />
         </Routes>
       </MemoryRouter>
     );
@@ -21,11 +21,7 @@ describe("ListingPage", () => {
     expect(screen.getByText(jobListing.company)).toBeInTheDocument();
     expect(screen.getByText(jobListing.title)).toBeInTheDocument();
     expect(screen.getByText(jobListing.description)).toBeInTheDocument();
-
-    jobListing.criteria.forEach((criteria) => {
-      expect(screen.getByText(criteria.field)).toBeInTheDocument();
-      expect(screen.getByText(criteria.value)).toBeInTheDocument();
-    });
+    expect(screen.getByText(jobListing.location)).toBeInTheDocument();
 
     expect(screen.getByRole("link", { name: "Apply" })).toHaveAttribute(
       "href",
@@ -34,11 +30,12 @@ describe("ListingPage", () => {
   });
 
   test("renders 'Not Found' when job listing is not found", () => {
+    const jobListings = getDummyJobListings();
     const listingId = 999; // Assuming this listing ID does not exist
     render(
       <MemoryRouter initialEntries={[`/listing/${listingId}`]}>
         <Routes>
-          <Route path="/listing/:listingId" element={<ListingPage />} />
+          <Route path="/listing/:listingId" element={<ListingPage listings={jobListings} />} />
         </Routes>
       </MemoryRouter>
     );
