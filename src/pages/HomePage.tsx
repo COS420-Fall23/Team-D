@@ -15,7 +15,7 @@ export function HomePage({
   const [filterLocation, setFilterLocation] = useState("");
   const [refresh, setRefresh] = useState(false);
 
-  const dummyListings = listings
+  const filteredListings = listings
     .filter(
       (listing) =>
         searchTerm === "" ||
@@ -49,7 +49,7 @@ export function HomePage({
         setFilterLocation={setFilterLocation}
       />
 
-      <JobList listings={dummyListings} />
+      <JobList listings={filteredListings} />
     </div>
   );
 }
