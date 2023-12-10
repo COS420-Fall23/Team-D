@@ -28,7 +28,8 @@ export function LoginButton(prop: RefreshProp): JSX.Element {
 
             // check if user exists in database
             // if not, redirect to register page 
-            const firebaseUser = value?.docs.find((doc) => doc.data().email === gAuthUser.email);
+            const firebaseUser = value?.docs.find((doc) => doc.id === gAuthUser.email);
+            console.log("db query - login button")
             if (firebaseUser === undefined) {
                 console.log("user not found in database");                    
                 navigate("/register");

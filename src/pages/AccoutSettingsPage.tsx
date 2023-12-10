@@ -21,7 +21,13 @@ export function AccountSettingsPage(): JSX.Element {
     //setUser(docSnap.exists() ? docSnap : null);
   }
 
-  getUser();
+  async function updateUser() {
+    if (user === null) {
+      await getUser();
+    }
+  }
+
+  updateUser();
 
   return (
     <div>
