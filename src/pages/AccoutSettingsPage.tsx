@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
 import { ProfileDropDownButton } from "../components/ProfileDropdown";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection } from "firebase/firestore";
@@ -8,6 +7,7 @@ import { EditFullName } from "../components/EditFullNamebutton";
 import { EditPhonenumber } from "../components/EditPhoneNumer";
 import { EditCollege } from "../components/EditCollege";
 import { EditLocation } from "../components/EditLocationButton";
+import { Skills } from "../components/SkillsForm";
 
 export function AccountSettingsPage(): JSX.Element {
   const [value] = useCollection(collection(db, "User"));
@@ -44,13 +44,7 @@ export function AccountSettingsPage(): JSX.Element {
         <div>Location: {FireBaseUser?.data().Location}</div>
         <EditLocation userEmail={FireBaseUser?.data().Email}></EditLocation>
       </div>
-      <Form>
-        <h2>Skills</h2>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Skills</Form.Label>
-          <Form.Control type="text" placeholder="Enter Skill" />
-        </Form.Group>
-      </Form>
+      <Skills></Skills>
     </div>
   );
 }
