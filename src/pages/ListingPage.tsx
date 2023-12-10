@@ -10,7 +10,7 @@ export function ListingPage({
   const params = useParams();
   const listingId = Number(params.listingId);
 
-  const jobListing = listings().find(
+  const jobListing = listings.find(
     (value: JobListing): boolean => value.id === listingId
   );
 
