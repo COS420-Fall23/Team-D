@@ -6,38 +6,36 @@ import { SearchAndFilter } from "../components/SearchAndFilter";
 import { JobListing } from "../data/job_listing";
 import { HomeProfileDropDownButton } from "../components/HomePageProfileDropdown";
 import { LoginButton } from "../components/LoginButton";
+import MyButtonLink from "../components/MyButtonLink";
+import { Link } from "react-router-dom";
 
 export function HomePage({
-    listings,
+  listings,
 }: {
-    listings: JobListing[];
+  listings: JobListing[];
 }): JSX.Element {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [filterLocation, setFilterLocation] = useState("");
-    const [refresh, setRefresh] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterLocation, setFilterLocation] = useState("");
+  const [refresh, setRefresh] = useState(false);
 
-    const dummyListings = listings
-        .filter(
-            (listing) =>
-                searchTerm === "" ||
-                listing.company
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase()) ||
-                listing.title.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-        .filter(
-            (listing) =>
-                filterLocation === "" ||
-                listing.location
-                    .toLowerCase()
-                    .includes(filterLocation.toLowerCase())
-        );
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const dummyListings = listings
+    .filter(
+      (listing) =>
+        searchTerm === "" ||
+        listing.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        listing.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .filter(
+      (listing) =>
+        filterLocation === "" ||
+        listing.location.toLowerCase().includes(filterLocation.toLowerCase())
+    );
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
-    return (
-        <div>
-            <header>
+  return (
+    <div>
+      <header>
         <h1>College Jobs</h1>
         {auth.currentUser ? (
           <HomeProfileDropDownButton
@@ -47,16 +45,19 @@ export function HomePage({
         ) : (
           <LoginButton refresh={refresh} setRefresh={setRefresh}></LoginButton>
         )}
+        <div>
+          <MyButtonLink to="/resources">Go to Resource Page</MyButtonLink>
+        </div>
       </header>
 
-            <SearchAndFilter
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                filterLocation={filterLocation}
-                setFilterLocation={setFilterLocation}
-            />
+      <SearchAndFilter
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        filterLocation={filterLocation}
+        setFilterLocation={setFilterLocation}
+      />
 
-            <JobList listings={dummyListings} />
-        </div>
-    );
+      <JobList listings={dummyListings} />
+    </div>
+  );
 }
