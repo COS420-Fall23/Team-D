@@ -14,6 +14,10 @@ export function ListingPage({
     (value: JobListing): boolean => value.id === listingId
   );
 
+  if (jobListing === undefined) {
+    return <div>Not Found.</div>;
+  }
+
   return (
     <div>
       <header>
