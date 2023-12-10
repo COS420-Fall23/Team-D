@@ -1,9 +1,10 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { ProfileDropDownButton } from "../components/ProfileDropdown";
+//import { ProfileDropDownButton } from "../components/ProfileDropdown";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection } from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
+import { Header } from "../components/Header";
 
 export function AccountSettingsPage(): JSX.Element {
   const [value] = useCollection(collection(db, "User"));
@@ -14,10 +15,7 @@ export function AccountSettingsPage(): JSX.Element {
 
   return (
     <div>
-      <header>
-        <h1>College Jobs</h1>
-        <ProfileDropDownButton></ProfileDropDownButton>
-      </header>
+      <Header></Header>
       <h1>Account Settings</h1>
       <div data-testid="Email">Email {FireBaseUser?.data().Email} </div>
       <div>

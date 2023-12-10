@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { JobListing } from "../data/job_listing";
 import { Button, Col, Row } from "react-bootstrap";
+import { Header } from "../components/Header";
 export function ListingPage({
     listings,
 }: {
@@ -19,12 +20,7 @@ export function ListingPage({
 
   return (
     <div>
-      <header>
-        <h1>College Jobs</h1>
-        <Link to="/">
-          <Button variant="success">Home</Button>
-        </Link>
-      </header>
+      <Header></Header>
       <h1>{jobListing.company}</h1>
       <h2>{jobListing.title}</h2>
       <p>{jobListing.description}</p>
