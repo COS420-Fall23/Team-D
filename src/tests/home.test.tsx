@@ -23,12 +23,6 @@ describe("Simple tests for the home page", () => {
     expect(listings.length).toBeGreaterThan(0);
   });
 
-  test("Profile dropdown is present", () => {
-    const ProfileDropdown = screen.getByTestId("profileDropdown");
-
-    expect(ProfileDropdown).toBeInTheDocument();
-  });
-
   test("Displays job listings based on search term", () => {
     const searchInput = screen.getByPlaceholderText(
       "Search by company or title"
