@@ -12,9 +12,11 @@ import {
 
 export interface ListingViewProps {
   listing: JobListing;
+  //flag so I can use the component on the saved jobs page and the Home page
   isSaved: boolean;
 }
 
+//Button click to save a job to the user's profile
 async function saveJobClick(listing: JobListing): Promise<void> {
   const userEmail = auth.currentUser?.email;
   if (userEmail === null || userEmail === undefined) {
@@ -29,6 +31,7 @@ async function saveJobClick(listing: JobListing): Promise<void> {
   console.log(userDocData.data()?.saved_jobs);
 }
 
+//Button click to unsave a job from a user profile
 async function unsaveJobClick(listing: JobListing): Promise<void> {
   const userEmail = auth.currentUser?.email;
   if (userEmail === null || userEmail === undefined) {

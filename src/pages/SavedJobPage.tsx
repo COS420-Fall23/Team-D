@@ -1,16 +1,7 @@
-import {
-  DocumentData,
-  DocumentSnapshot,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-} from "firebase/firestore";
+import { collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { auth, db } from "../firebaseConfig";
-import { JobList } from "../components/JobList";
 import { JobListing } from "../data/job_listing";
-import { useState } from "react";
 import { ListingView } from "../components/ListingView";
 import { ProfileDropDownButton } from "../components/ProfileDropdown";
 
