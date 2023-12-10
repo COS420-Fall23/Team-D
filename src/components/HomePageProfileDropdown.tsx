@@ -1,10 +1,23 @@
 import { Dropdown, DropdownDivider } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, db } from "../firebaseConfig";
 import { collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { Link } from "react-router-dom";
 
-export function ProfileDropDownButton(): JSX.Element {
+export interface LoginButtonProp {
+  refresh: boolean;
+  setRefresh: (refresh: boolean) => void;
+}
+
+export function HomeProfileDropDownButton(prop: LoginButtonProp): JSX.Element {
+  let navigate = useNavigate();
+
+  function logout(): void {
+    auth.signOut();
+    prop.setRefresh(!prop.refresh);
+    navigate("/");
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [value, CollegtionLoading, CollectionError] = useCollection(
     collection(db, "User")
@@ -34,6 +47,7 @@ export function ProfileDropDownButton(): JSX.Element {
         <Dropdown.Item data-testid="settings">
           {<Link to={"/settings"}>Settings</Link>}
         </Dropdown.Item>
+        <Dropdown.Item onClick={() => logout()}>Sign Out</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { ListingView } from "../components/ListingView";
-import { ProfileDropDownButton } from "../components/ProfileDropdown";
 import { JobListing } from "../data/job_listing";
 import { getDummyJobListings } from "../dummy/job_listing";
+import { LoginButton } from "../components/LoginButton";
 import { auth } from "../firebaseConfig";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { HomeProfileDropDownButton } from "../components/HomePageProfileDropdown";
 
 export function HomePage(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterLocation, setFilterLocation] = useState("");
   const [filterType, setFilterType] = useState("");
+  const [refresh, setRefresh] = useState(false);
 
   const dummyListings = getDummyJobListings()
     .filter(
@@ -25,10 +26,6 @@ export function HomePage(): JSX.Element {
     .filter(
       (listing) => filterType === "" || listing.criteria[1].value === filterType
     );
-
-  const logdInUserID = -1;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
   const getFilterOptions = (field: string): string[] => {
     const options = new Set<string>();
@@ -46,8 +43,14 @@ export function HomePage(): JSX.Element {
     <div>
       <header>
         <h1>College Jobs</h1>
-        <ProfileDropDownButton userID={logdInUserID}></ProfileDropDownButton>
-        <Button onClick={() => signInWithGoogle()}>Login</Button>
+        {auth.currentUser ? (
+          <HomeProfileDropDownButton
+            refresh={refresh}
+            setRefresh={setRefresh}
+          ></HomeProfileDropDownButton>
+        ) : (
+          <LoginButton refresh={refresh} setRefresh={setRefresh}></LoginButton>
+        )}
       </header>
 
       <div className="searchAndFilter">
