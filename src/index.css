@@ -18,6 +18,10 @@ code {
 }
 
 header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 10px;
   background-color: #0066ff;
   min-height: 8vh;
   display: flex;
@@ -25,6 +29,7 @@ header {
   align-items: center;
   justify-content: space-between;
   color: #70ff00;
+  z-index: 1;
 }
 
 header h1 {
@@ -50,10 +55,24 @@ header button {
   padding-left: 100px;
 }
 
+.listing button {
+  margin: 0 4px;
+}
+
 .feedBox {
   margin-left: 20%;
+  margin-top: calc(10vh + 40px);
 }
 
 .searchAndFilter {
   float: left;
+  padding-top: 10vh;
+  background-color: #0066ff;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+}
+
+.form-control {
+  margin: 8px;
 }
