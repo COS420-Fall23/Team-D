@@ -21,11 +21,7 @@ describe("ListingPage", () => {
     expect(screen.getByText(jobListing.company)).toBeInTheDocument();
     expect(screen.getByText(jobListing.title)).toBeInTheDocument();
     expect(screen.getByText(jobListing.description)).toBeInTheDocument();
-
-    jobListing.criteria.forEach((criteria) => {
-      expect(screen.getByText(criteria.field)).toBeInTheDocument();
-      expect(screen.getByText(criteria.value)).toBeInTheDocument();
-    });
+    expect(screen.getByText(jobListing.location)).toBeInTheDocument();
 
     expect(screen.getByRole("link", { name: "Apply" })).toHaveAttribute(
       "href",
