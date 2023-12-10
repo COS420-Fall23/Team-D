@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { Button, auth } from "../firebaseConfig";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { JobList } from "../components/JobList";
-import { SearchAndFilter } from "../components/SearchAndFilter";
+import { Button, Form } from "react-bootstrap";
+import { ListingView } from "../components/ListingView";
 import { JobListing } from "../data/job_listing";
 import { getDummyJobListings } from "../dummy/job_listing";
 import { LoginButton } from "../components/LoginButton";
 import { auth } from "../firebaseConfig";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
+import { auth } from "../firebaseConfig";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { JobList } from "../components/JobList";
+import { SearchAndFilter } from "../components/SearchAndFilter";
+import { JobListing } from "../data/job_listing";
 import { HomeProfileDropDownButton } from "../components/HomePageProfileDropdown";
 import { LoginButton } from "../components/LoginButton";
 
