@@ -1,8 +1,7 @@
 import { JobListing } from "../data/job_listing";
 
 export function getDummyJobListings(): JobListing[] {
-    const dummyListings: JobListing[] = [];
-
+  const dummyListings: JobListing[] = [];
     dummyListings.push({
         id: -1,
         company: "Penobscot Indian Nation",
@@ -42,5 +41,5 @@ export function getDummyJobListings(): JobListing[] {
         location: "Make-believe, Dummy Location",
     });
 
-    return dummyListings;
+  return dummyListings;
 }

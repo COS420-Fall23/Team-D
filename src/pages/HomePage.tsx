@@ -6,6 +6,8 @@ import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { JobList } from "../components/JobList";
 import { SearchAndFilter } from "../components/SearchAndFilter";
 import { JobListing } from "../data/job_listing";
+import { HomeProfileDropDownButton } from "../components/HomePageProfileDropdown";
+import { LoginButton } from "../components/LoginButton";
 
 export function HomePage({
     listings,
@@ -31,7 +33,6 @@ export function HomePage({
                     .toLowerCase()
                     .includes(filterLocation.toLowerCase())
         );
-
     const logdInUserID = -1;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
@@ -39,12 +40,16 @@ export function HomePage({
     return (
         <div>
             <header>
-                <h1>College Jobs</h1>
-                <ProfileDropDownButton
-                    userID={logdInUserID}
-                ></ProfileDropDownButton>
-                <Button onClick={() => signInWithGoogle()}>Login</Button>
-            </header>
+        <h1>College Jobs</h1>
+        {auth.currentUser ? (
+          <HomeProfileDropDownButton
+            refresh={refresh}
+            setRefresh={setRefresh}
+          ></HomeProfileDropDownButton>
+        ) : (
+          <LoginButton refresh={refresh} setRefresh={setRefresh}></LoginButton>
+        )}
+      </header>
 
             <SearchAndFilter
                 searchTerm={searchTerm}
