@@ -30,6 +30,7 @@ describe("ListingPage", () => {
   });
 
   test("renders 'Not Found' when job listing is not found", () => {
+    const jobListings = getDummyJobListings();
     const listingId = 999; // Assuming this listing ID does not exist
     render(
       <MemoryRouter initialEntries={[`/listing/${listingId}`]}>
