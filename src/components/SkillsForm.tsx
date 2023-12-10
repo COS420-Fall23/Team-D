@@ -6,28 +6,29 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { useState } from "react";
-import { auth, db } from "../firebaseConfig";
+import { db } from "../firebaseConfig";
 import { InputGroup, Button, Form, ButtonGroup } from "react-bootstrap";
 import { useCollection } from "react-firebase-hooks/firestore";
 
-export function Skills(): JSX.Element {
-  const [skill, setSkill] = useState("");
-  const userEmail = auth.currentUser?.email;
-  if (userEmail === undefined || userEmail === null) {
-    throw new Error("userEmail is undefined");
-  }
-  const handleUpdateClick = async () => {
-    const userDoc = doc(db, "User", userEmail);
+interface SkillsFormProp {
+  userEmail: string;
+}
 
+export function Skills(prop: SkillsFormProp): JSX.Element {
+  const [skill, setSkill] = useState("");
+
+  const handleUpdateClick = async () => {
+    const userDoc = doc(db, "User", prop.userEmail);
     await updateDoc(userDoc, {
       skills: arrayUnion(skill),
     });
+    setSkill("");
   };
-  const handleDeleteClick = async () => {
-    const userDoc = doc(db, "User", userEmail);
+  const handleDeleteClick = async (DeleteSkill: string) => {
+    const userDoc = doc(db, "User", prop.userEmail);
 
     await updateDoc(userDoc, {
-      skills: arrayRemove(skill),
+      skills: arrayRemove(DeleteSkill),
     });
   };
 
@@ -38,7 +39,7 @@ export function Skills(): JSX.Element {
   const [value] = useCollection(collection(db, "User"));
 
   const FireBaseUser = value?.docs.find(
-    (user): boolean => user.data().Email === userEmail
+    (user): boolean => user.data().Email === prop.userEmail
   );
 
   return (
@@ -50,10 +51,10 @@ export function Skills(): JSX.Element {
           Enter
         </Button>
       </InputGroup>
-      {FireBaseUser?.data().Skills.map((skill: string) => (
+      {FireBaseUser?.data().skills.map((skill: string) => (
         <ButtonGroup aria-label="Basic example">
           <Button active>{skill}</Button>
-          <Button variant="Danger" onClick={handleDeleteClick}>
+          <Button variant="danger" onClick={() => handleDeleteClick(skill)}>
             X
           </Button>
         </ButtonGroup>

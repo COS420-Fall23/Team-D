@@ -15,7 +15,7 @@ export function EditFullName(prop: EditFullNameProp): JSX.Element {
     const userDoc = doc(db, "User", prop.userEmail);
 
     await updateDoc(userDoc, {
-      fullName: fullName,
+      FullName: fullName,
     });
     setvisible(false);
   };

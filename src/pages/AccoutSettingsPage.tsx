@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { ProfileDropDownButton } from "../components/ProfileDropdown";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection } from "firebase/firestore";
@@ -27,7 +26,7 @@ export function AccountSettingsPage(): JSX.Element {
         <div>Email: {FireBaseUser?.data().Email}</div>{" "}
       </div>
       <div data-testid="FullName">
-        <div>Full Name: {FireBaseUser?.data().Name}</div>
+        <div>Full Name: {FireBaseUser?.data().FullName}</div>
         <EditFullName userEmail={FireBaseUser?.data().Email}></EditFullName>
       </div>
       <div data-testid="Phone">
@@ -44,7 +43,7 @@ export function AccountSettingsPage(): JSX.Element {
         <div>Location: {FireBaseUser?.data().Location}</div>
         <EditLocation userEmail={FireBaseUser?.data().Email}></EditLocation>
       </div>
-      <Skills></Skills>
+      {<Skills userEmail={FireBaseUser?.data().Email}></Skills>}
     </div>
   );
 }
