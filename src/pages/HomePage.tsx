@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { ListingView } from "../components/ListingView";
 import { JobListing } from "../data/job_listing";
 import { getDummyJobListings } from "../dummy/job_listing";
@@ -7,6 +7,7 @@ import { LoginButton } from "../components/LoginButton";
 import { auth } from "../firebaseConfig";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import { HomeProfileDropDownButton } from "../components/HomePageProfileDropdown";
 
 export function HomePage(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
