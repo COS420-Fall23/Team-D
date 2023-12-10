@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { getDummyJobListings } from "../dummy/job_listing";
-import { JobCriteriaItem, JobListing } from "../data/job_listing";
+import { JobListing } from "../data/job_listing";
 import { Button, Col, Row } from "react-bootstrap";
 export function ListingPage({
     listings,
