@@ -18,6 +18,10 @@ code {
 }
 
 header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 10px;
   background-color: #0066ff;
   min-height: 8vh;
   display: flex;
@@ -25,6 +29,7 @@ header {
   align-items: center;
   justify-content: space-between;
   color: #70ff00;
+  z-index: 1;
 }
 
 header h1 {
@@ -50,10 +55,48 @@ header button {
   padding-left: 100px;
 }
 
+.listing button {
+  margin: 0 4px;
+}
+
+.listing-page .content {
+  background-color: #e6e6e6;
+  margin: 0 20px 20px calc(13.9vw + 20px);
+  padding: 20px;
+  border-radius: 40px;
+  margin-top: calc(8vh + 40px);
+}
+
 .feedBox {
   margin-left: 20%;
+  margin-top: calc(10vh + 40px);
 }
 
 .searchAndFilter {
   float: left;
+  padding-top: 10vh;
+  background-color: #0066ff;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+}
+
+.blue-left {
+  float: left;
+  padding-top: 10vh;
+  background-color: #0066ff;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  width: 13.9vw;
+}
+
+.blue-left .home-button {
+  position: fixed;
+  bottom: 4.4vw;
+  left: 5vw;
+}
+
+.form-control {
+  margin: 8px;
 }
