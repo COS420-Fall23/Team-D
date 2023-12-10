@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { Button } from "react-bootstrap";
-import { ProfileDropDownButton } from "../components/ProfileDropdown";
 import { auth } from "../firebaseConfig";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { JobList } from "../components/JobList";
