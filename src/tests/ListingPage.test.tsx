@@ -13,7 +13,7 @@ describe("ListingPage", () => {
     render(
       <MemoryRouter initialEntries={[`/listing/${listingId}`]}>
         <Routes>
-          <Route path="/listing/:listingId" element={<ListingPage />} />
+          <Route path="/listing/:listingId" element={<ListingPage listings={jobListings}/>} />
         </Routes>
       </MemoryRouter>
     );
