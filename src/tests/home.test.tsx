@@ -1,10 +1,11 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import App from "../App";
+import { getDummyJobListings } from "../dummy/job_listing";
+import { HomePage } from "../pages/HomePage";
 
 describe("Simple tests for the home page", () => {
     beforeEach(() => {
         // eslint-disable-next-line testing-library/no-render-in-setup
-        render(<App />);
+        render(<HomePage listing={getDummyJobListings()}/>);
     });
 
     test("Home page display app title", () => {
