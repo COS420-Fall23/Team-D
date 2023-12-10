@@ -5,7 +5,7 @@ import { HomePage } from "../pages/HomePage";
 describe("Simple tests for the home page", () => {
     beforeEach(() => {
         // eslint-disable-next-line testing-library/no-render-in-setup
-        render(<HomePage listing={getDummyJobListings()}/>);
+        render(<HomePage listings={getDummyJobListings()}/>);
     });
 
     test("Home page display app title", () => {
