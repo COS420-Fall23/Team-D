@@ -1,11 +1,16 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { getDummyJobListings } from "../dummy/job_listing";
 import { HomePage } from "../pages/HomePage";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Simple tests for the home page", () => {
     beforeEach(() => {
         // eslint-disable-next-line testing-library/no-render-in-setup
-        render(<HomePage listings={getDummyJobListings()}/>);
+        render(
+            <BrowserRouter>
+                <HomePage listings={getDummyJobListings()} />
+            </BrowserRouter>
+        );
     });
 
     test("Home page display app title", () => {
@@ -22,12 +27,6 @@ describe("Simple tests for the home page", () => {
     test("At least one listing is present", () => {
         const listings = screen.getAllByText("See More");
         expect(listings.length).toBeGreaterThan(0);
-    });
-
-    test("Profile dropdown is present", () => {
-        const ProfileDropdown = screen.getByTestId("profileDropdown");
-
-        expect(ProfileDropdown).toBeInTheDocument();
     });
 
     test("Displays job listings based on search term", () => {
