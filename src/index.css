@@ -1,13 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap");
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Fredoka", "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  font-family: "Fredoka", sans-serif;
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 10px;
+  background-color: #0066ff;
+  min-height: 8vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: #70ff00;
+  z-index: 1;
+}
+
+header h1 {
+  margin: 0 20px;
+  padding: 0;
+  font-size: calc(60px + 1vmin);
+}
+
+header button {
+  height: 50px;
+  width: 100px;
+  font-size: 24px;
+  margin: 0 20px;
+  padding: 0;
+}
+
+.listing {
+  background-color: #e6e6e6;
+  border-radius: 40px;
+  text-align: left;
+  margin: 30px;
+  padding: 20px;
+  padding-left: 100px;
+}
+
+.listing button {
+  margin: 0 4px;
+}
+
+.listing-page .content {
+  background-color: #e6e6e6;
+  margin: 0 20px 20px calc(13.9vw + 20px);
+  padding: 20px;
+  border-radius: 40px;
+  margin-top: calc(8vh + 40px);
+}
+
+.feedBox {
+  margin-left: 20%;
+  margin-top: calc(10vh + 40px);
+}
+
+.searchAndFilter {
+  float: left;
+  padding-top: 10vh;
+  background-color: #0066ff;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+}
+
+.blue-left {
+  float: left;
+  padding-top: 10vh;
+  background-color: #0066ff;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  width: 13.9vw;
+}
+
+.blue-left .home-button {
+  position: fixed;
+  bottom: 4.4vw;
+  left: 5vw;
+}
+
+.form-control {
+  margin: 8px;
 }
