@@ -45,9 +45,11 @@ export function HomePage({
         ) : (
           <LoginButton refresh={refresh} setRefresh={setRefresh}></LoginButton>
         )}
-        <div>
-          <MyButtonLink to="/resources">Go to Resource Page</MyButtonLink>
-        </div>
+        <h2>
+          <div>
+            <MyButtonLink to="/resources">Resource Page</MyButtonLink>
+          </div>
+        </h2>
       </header>
 
       <SearchAndFilter
