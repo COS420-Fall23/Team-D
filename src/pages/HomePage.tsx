@@ -16,6 +16,7 @@ export function HomePage({
 }): JSX.Element {
     const [searchTerm, setSearchTerm] = useState("");
     const [filterLocation, setFilterLocation] = useState("");
+    const [refresh, setRefresh] = useState(false);
 
     const dummyListings = listings
         .filter(
