@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import { UserSingleton } from "../data/user";
 
 interface EditLocationProp {
   userEmail: string;
+  refresh: boolean;
+  setRefresh: (refresh: boolean) => void;
 }
 
 export function EditLocation(prop: EditLocationProp): JSX.Element {
@@ -15,8 +18,10 @@ export function EditLocation(prop: EditLocationProp): JSX.Element {
     const userDoc = doc(db, "User", prop.userEmail);
 
     await updateDoc(userDoc, {
-      locaiton: Location,
+      location: Location,
     });
+    let localUser = UserSingleton.getInstance();
+    localUser.location = Location;
     setvisible(false);
   };
 

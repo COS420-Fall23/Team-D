@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import { UserSingleton } from "../data/user";
 
 interface EditCollegeProp {
   userEmail: string;
+  refresh: boolean;
+  setRefresh: (refresh: boolean) => void;
 }
 
 export function EditCollege(prop: EditCollegeProp): JSX.Element {
@@ -17,6 +20,8 @@ export function EditCollege(prop: EditCollegeProp): JSX.Element {
     await updateDoc(userDoc, {
       college: College,
     });
+    let localUser = UserSingleton.getInstance();
+    localUser.college = College;
     setvisible(false);
   };
 

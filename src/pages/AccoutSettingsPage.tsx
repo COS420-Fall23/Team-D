@@ -23,21 +23,37 @@ export function AccountSettingsPage(): JSX.Element {
       </div>
       <div data-testid="FullName">
         <div>Full Name: {localUser.fullName}</div>
-        <EditFullName userEmail={localUser.email}></EditFullName>
+        <EditFullName
+          userEmail={localUser.email}
+          refresh={refresh}
+          setRefresh={setRefresh}
+        ></EditFullName>
       </div>
       <div data-testid="Phone">
         <div>Phone: {localUser.phoneNumber}</div>
-        <EditPhonenumber userEmail={localUser.email}></EditPhonenumber>
+        <EditPhonenumber
+          userEmail={localUser.email}
+          refresh={refresh}
+          setRefresh={setRefresh}
+        ></EditPhonenumber>
       </div>
       <div data-testid="College">
         <div>College: {localUser.college}</div>
-        <EditCollege userEmail={localUser.email}></EditCollege>
+        <EditCollege
+          userEmail={localUser.email}
+          refresh={refresh}
+          setRefresh={setRefresh}
+        ></EditCollege>
       </div>
       <div data-testid="Location">
         <div>Location: {localUser.location}</div>
-        <EditLocation userEmail={localUser.email}></EditLocation>
+        <EditLocation
+          userEmail={localUser.email}
+          refresh={refresh}
+          setRefresh={setRefresh}
+        ></EditLocation>
       </div>
-      {<Skills userEmail={localUser.email}></Skills>}
+      {<Skills refresh={refresh} setRefresh={setRefresh}></Skills>}
     </div>
   );
 }

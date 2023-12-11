@@ -20,4 +20,5 @@ export interface User {
   dob: string;
   location: string;
   saved_jobs: Array<JobListing>;
+  skills: Array<string>;
 }

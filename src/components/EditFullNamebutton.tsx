@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import { UserSingleton } from "../data/user";
 
 interface EditFullNameProp {
   userEmail: string;
+  refresh: boolean;
+  setRefresh: (refresh: boolean) => void;
 }
 
 export function EditFullName(prop: EditFullNameProp): JSX.Element {
@@ -15,8 +18,11 @@ export function EditFullName(prop: EditFullNameProp): JSX.Element {
     const userDoc = doc(db, "User", prop.userEmail);
 
     await updateDoc(userDoc, {
-      FullName: fullName,
+      fullName: fullName,
     });
+    let localUser = UserSingleton.getInstance();
+    localUser.fullName = fullName;
+    prop.setRefresh(!prop.refresh);
     setvisible(false);
   };
 

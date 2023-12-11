@@ -8,39 +8,39 @@ import {
 import { useState } from "react";
 import { db } from "../firebaseConfig";
 import { InputGroup, Button, Form, ButtonGroup } from "react-bootstrap";
-import { useCollection } from "react-firebase-hooks/firestore";
+import { UserSingleton } from "../data/user";
+import { RefreshProp } from "./Header";
 
-interface SkillsFormProp {
-  userEmail: string;
-}
-
-export function Skills(prop: SkillsFormProp): JSX.Element {
+export function Skills(prop: RefreshProp): JSX.Element {
   const [skill, setSkill] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [user, setUser] = useState(UserSingleton.getInstance());
 
   const handleUpdateClick = async () => {
-    const userDoc = doc(db, "User", prop.userEmail);
+    const userDoc = doc(db, "User", user.email);
     await updateDoc(userDoc, {
       skills: arrayUnion(skill),
     });
-    setSkill("");
+    let localUser = UserSingleton.getInstance();
+    localUser.skills.push(skill);
+    prop.setRefresh(!prop.refresh);
   };
   const handleDeleteClick = async (DeleteSkill: string) => {
-    const userDoc = doc(db, "User", prop.userEmail);
+    const userDoc = doc(db, "User", user.email);
 
     await updateDoc(userDoc, {
       skills: arrayRemove(DeleteSkill),
     });
+    let localUser = UserSingleton.getInstance();
+    localUser.skills = localUser.skills.filter(
+      (skill) => skill !== DeleteSkill
+    );
+    prop.setRefresh(!prop.refresh);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSkill(event.target.value);
   };
-
-  const [value] = useCollection(collection(db, "User"));
-
-  const FireBaseUser = value?.docs.find(
-    (user): boolean => user.data().Email === prop.userEmail
-  );
 
   return (
     <div>
@@ -51,7 +51,7 @@ export function Skills(prop: SkillsFormProp): JSX.Element {
           Enter
         </Button>
       </InputGroup>
-      {FireBaseUser?.data().skills.map((skill: string) => (
+      {user.skills.map((skill: string) => (
         <ButtonGroup aria-label="Basic example">
           <Button active>{skill}</Button>
           <Button variant="danger" onClick={() => handleDeleteClick(skill)}>
