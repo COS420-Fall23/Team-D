@@ -8,7 +8,6 @@ import { signInWithGooglePopup } from "../firebaseConfig";
 export interface LoginButtonProp {
   refresh: boolean;
   setRefresh: (refresh: boolean) => void;
-  setLogin: (isLogedIn: boolean) => void;
 }
 
 export function LoginButton(prop: LoginButtonProp): JSX.Element {
@@ -26,11 +25,9 @@ export function LoginButton(prop: LoginButtonProp): JSX.Element {
     );
 
     if (FireBaseUser === undefined) {
-      prop.setLogin(true);
       navigate("/register");
     } else {
       prop.setRefresh(!prop.refresh);
-      prop.setLogin(true);
     }
   }
   return <Button onClick={() => loginchecks()}>Login</Button>;

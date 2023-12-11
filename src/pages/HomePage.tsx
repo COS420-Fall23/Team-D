@@ -38,7 +38,6 @@ export function HomePage(): JSX.Element {
     });
     return Array.from(options);
   };
-  const [isLogedIn, setLogin] = useState(false);
   return (
     <div>
       <header>
@@ -47,14 +46,9 @@ export function HomePage(): JSX.Element {
           <HomeProfileDropDownButton
             refresh={refresh}
             setRefresh={setRefresh}
-            setLogin={setLogin}
           ></HomeProfileDropDownButton>
         ) : (
-          <LoginButton
-            refresh={refresh}
-            setRefresh={setRefresh}
-            setLogin={setLogin}
-          ></LoginButton>
+          <LoginButton refresh={refresh} setRefresh={setRefresh}></LoginButton>
         )}
       </header>
 
