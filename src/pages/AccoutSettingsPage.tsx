@@ -15,45 +15,47 @@ export function AccountSettingsPage(): JSX.Element {
   waitForUser(localUser, refresh, setRefresh, "AccountSettingsPage");
 
   return (
-    <div>
+    <div className="accountSettings">
       <Header></Header>
-      <h1>Account Settings</h1>
-      <div data-testid="Email">
-        <div>Email: {localUser.email}</div>{" "}
+      <div className="accountSettings-Content">
+        <h1>Account Settings</h1>
+        <div data-testid="Email">
+          <div>Email: {localUser.email}</div>{" "}
+        </div>
+        <div data-testid="FullName">
+          <div>Full Name: {localUser.fullName}</div>
+          <EditFullName
+            userEmail={localUser.email}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          ></EditFullName>
+        </div>
+        <div data-testid="Phone">
+          <div>Phone: {localUser.phoneNumber}</div>
+          <EditPhonenumber
+            userEmail={localUser.email}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          ></EditPhonenumber>
+        </div>
+        <div data-testid="College">
+          <div>College: {localUser.college}</div>
+          <EditCollege
+            userEmail={localUser.email}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          ></EditCollege>
+        </div>
+        <div data-testid="Location">
+          <div>Location: {localUser.location}</div>
+          <EditLocation
+            userEmail={localUser.email}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          ></EditLocation>
+        </div>
+        {<Skills refresh={refresh} setRefresh={setRefresh}></Skills>}
       </div>
-      <div data-testid="FullName">
-        <div>Full Name: {localUser.fullName}</div>
-        <EditFullName
-          userEmail={localUser.email}
-          refresh={refresh}
-          setRefresh={setRefresh}
-        ></EditFullName>
-      </div>
-      <div data-testid="Phone">
-        <div>Phone: {localUser.phoneNumber}</div>
-        <EditPhonenumber
-          userEmail={localUser.email}
-          refresh={refresh}
-          setRefresh={setRefresh}
-        ></EditPhonenumber>
-      </div>
-      <div data-testid="College">
-        <div>College: {localUser.college}</div>
-        <EditCollege
-          userEmail={localUser.email}
-          refresh={refresh}
-          setRefresh={setRefresh}
-        ></EditCollege>
-      </div>
-      <div data-testid="Location">
-        <div>Location: {localUser.location}</div>
-        <EditLocation
-          userEmail={localUser.email}
-          refresh={refresh}
-          setRefresh={setRefresh}
-        ></EditLocation>
-      </div>
-      {<Skills refresh={refresh} setRefresh={setRefresh}></Skills>}
     </div>
   );
 }

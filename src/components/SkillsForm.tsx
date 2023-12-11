@@ -37,7 +37,7 @@ export function Skills(prop: RefreshProp): JSX.Element {
   };
 
   return (
-    <div>
+    <div className="skillsForm">
       <h1>Skills</h1>
       <InputGroup className="mb-3">
         <Form.Control placeholder="Enter New Skill" onChange={handleChange} />
