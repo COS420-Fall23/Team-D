@@ -1,6 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import { AccountSettingsPage } from "../pages/AccoutSettingsPage";
+import { UserSingleton } from "../data/user";
 
 describe("Simple tests for Account Settings page", () => {
   test("Profile dropdown is present on Account settings page", () => {

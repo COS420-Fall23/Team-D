@@ -1,49 +1,43 @@
-import { ProfileDropDownButton } from "../components/ProfileDropdown";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { collection } from "firebase/firestore";
-import { auth, db } from "../firebaseConfig";
 import { EditFullName } from "../components/EditFullNamebutton";
 import { EditPhonenumber } from "../components/EditPhoneNumer";
 import { EditCollege } from "../components/EditCollege";
 import { EditLocation } from "../components/EditLocationButton";
 import { Skills } from "../components/SkillsForm";
+import React from "react";
+import { Header } from "../components/Header";
+import { UserSingleton, waitForUser } from "../data/user";
 
 export function AccountSettingsPage(): JSX.Element {
-  const [value] = useCollection(collection(db, "User"));
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [localUser, setLocalUser] = React.useState(UserSingleton.getInstance());
+  const [refresh, setRefresh] = React.useState(false);
 
-  const FireBaseUser = value?.docs.find(
-    (user): boolean => user.data().Email === auth.currentUser?.email
-  );
+  waitForUser(localUser, refresh, setRefresh, "AccountSettingsPage");
 
   return (
     <div>
-      <header>
-        <h1>College Jobs</h1>
-        <ProfileDropDownButton></ProfileDropDownButton>
-      </header>
+      <Header></Header>
       <h1>Account Settings</h1>
       <div data-testid="Email">
-        <div>Email: {FireBaseUser?.data().Email}</div>{" "}
+        <div>Email: {localUser.email}</div>{" "}
       </div>
       <div data-testid="FullName">
-        <div>Full Name: {FireBaseUser?.data().FullName}</div>
-        <EditFullName userEmail={FireBaseUser?.data().Email}></EditFullName>
+        <div>Full Name: {localUser.fullName}</div>
+        <EditFullName userEmail={localUser.email}></EditFullName>
       </div>
       <div data-testid="Phone">
-        <div>Phone: {FireBaseUser?.data().phoneNumber}</div>
-        <EditPhonenumber
-          userEmail={FireBaseUser?.data().Email}
-        ></EditPhonenumber>
+        <div>Phone: {localUser.phoneNumber}</div>
+        <EditPhonenumber userEmail={localUser.email}></EditPhonenumber>
       </div>
       <div data-testid="College">
-        <div>College: {FireBaseUser?.data().College}</div>
-        <EditCollege userEmail={FireBaseUser?.data().Email}></EditCollege>
+        <div>College: {localUser.college}</div>
+        <EditCollege userEmail={localUser.email}></EditCollege>
       </div>
       <div data-testid="Location">
-        <div>Location: {FireBaseUser?.data().Location}</div>
-        <EditLocation userEmail={FireBaseUser?.data().Email}></EditLocation>
+        <div>Location: {localUser.location}</div>
+        <EditLocation userEmail={localUser.email}></EditLocation>
       </div>
-      {<Skills userEmail={FireBaseUser?.data().Email}></Skills>}
+      {<Skills userEmail={localUser.email}></Skills>}
     </div>
   );
 }

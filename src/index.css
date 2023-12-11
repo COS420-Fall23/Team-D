@@ -18,9 +18,7 @@ code {
 }
 
 header {
-  position: fixed;
   width: 100%;
-  top: 0;
   padding: 10px;
   background-color: #0066ff;
   min-height: 8vh;
@@ -29,13 +27,13 @@ header {
   align-items: center;
   justify-content: space-between;
   color: #70ff00;
-  z-index: 1;
 }
 
 header h1 {
   margin: 0 20px;
   padding: 0;
   font-size: calc(60px + 1vmin);
+  z-index: 3;
 }
 
 header button {
@@ -99,4 +97,18 @@ header button {
 
 .form-control {
   margin: 8px;
+}
+
+.my-button-link {
+  /* Add your desired styles here */
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: white;
+  color: hsl(0, 0%, 0%);
+  border-radius: 5px;
+  border: 2px solid #0066ff;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
