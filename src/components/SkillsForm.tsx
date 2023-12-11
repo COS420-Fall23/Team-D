@@ -1,10 +1,4 @@
-import {
-  arrayRemove,
-  arrayUnion,
-  collection,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../firebaseConfig";
 import { InputGroup, Button, Form, ButtonGroup } from "react-bootstrap";
