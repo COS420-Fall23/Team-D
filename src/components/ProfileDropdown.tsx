@@ -1,10 +1,9 @@
 import { Dropdown, DropdownDivider } from "react-bootstrap";
-import { auth, } from "../firebaseConfig";
+import { auth } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { RefreshProp } from "./Header";
 import { UserSingleton, waitForUser } from "../data/user";
 import { useState } from "react";
-
 
 export function ProfileDropdown(prop: RefreshProp): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -26,6 +25,12 @@ export function ProfileDropdown(prop: RefreshProp): JSX.Element {
     // if we are not already on the settings page, navigate to it
     if (window.location.pathname !== "/settings") {
       navigate("/settings");
+    }
+  }
+  function handleSaveJobsClick(): void {
+    // if we are not already on the Saved Jobs page, navigate to it
+    if (window.location.pathname !== "/savedJobs") {
+      navigate("/savedJobs");
     }
   }
 
@@ -52,6 +57,9 @@ export function ProfileDropdown(prop: RefreshProp): JSX.Element {
           {/* Student at {college} */}
         </Dropdown.Item>
         <DropdownDivider />
+        <Dropdown.Item data-testid="savedJobs" onClick={handleSaveJobsClick}>
+          Saved Jobs
+        </Dropdown.Item>
         <Dropdown.Item data-testid="settings" onClick={handleSettingsClick}>
           Settings
         </Dropdown.Item>
