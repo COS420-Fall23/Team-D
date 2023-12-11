@@ -56,7 +56,8 @@ export function RegisterPage(): JSX.Element {
             dob: dob,
             location: location,
             email: auth.currentUser?.email,
-            saved_jobs: [""]
+            saved_jobs: [],
+            skills: []
         };
         let id = auth.currentUser?.email?.toString();
         if (id === undefined) {
