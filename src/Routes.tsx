@@ -8,6 +8,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { JobListing } from "./data/job_listing";
 import { useState } from "react";
 import { SavedJobsPage } from "./pages/SavedJobPage";
+import { ResourcePage } from "./pages/ResourcePage";
 
 export const AppRouter = () => {
   const [stateListings, setStateListings] = useState<JobListing[]>([]);
@@ -41,6 +42,7 @@ export const AppRouter = () => {
         <Route path="/settings" element={<AccountSettingsPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/savedJobs" element={<SavedJobsPage />} />
+        <Route path="/resources" element={<ResourcePage />} />
       </Routes>
     </Router>
   );

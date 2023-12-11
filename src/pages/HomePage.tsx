@@ -5,6 +5,7 @@ import { SearchAndFilter } from "../components/SearchAndFilter";
 import { JobListing } from "../data/job_listing";
 import { HomeProfileDropDownButton } from "../components/HomePageProfileDropdown";
 import { LoginButton } from "../components/LoginButton";
+import MyButtonLink from "../components/MyButtonLink";
 
 export function HomePage({
   listings,
@@ -40,6 +41,11 @@ export function HomePage({
         ) : (
           <LoginButton refresh={refresh} setRefresh={setRefresh}></LoginButton>
         )}
+        <h2>
+          <div>
+            <MyButtonLink to="/resources">Resource Page</MyButtonLink>
+          </div>
+        </h2>
       </header>
 
       <SearchAndFilter

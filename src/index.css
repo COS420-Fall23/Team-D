@@ -100,3 +100,17 @@ header button {
 .form-control {
   margin: 8px;
 }
+
+.my-button-link {
+  /* Add your desired styles here */
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: white;
+  color: hsl(0, 0%, 0%);
+  border-radius: 5px;
+  border: 2px solid #0066ff;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
