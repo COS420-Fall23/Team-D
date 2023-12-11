@@ -9,64 +9,63 @@
         The code below was generated using github copilot
 */
 
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom"; // Import MemoryRouter
+
 import { RegisterPage } from "../pages/RegisterPage";
 
 describe("Simple tests for the register page", () => {
     it("renders the register page correctly", () => {
-        render(<RegisterPage />);
+        render(
+            <MemoryRouter> {/* Wrap the component with MemoryRouter */}
+                <RegisterPage />
+            </MemoryRouter>
+        );
         expect(screen.getByText("Register")).toBeInTheDocument();
     });
 
     it("displays the full name field", () => {
-        render(<RegisterPage />);
+        render(
+            <MemoryRouter> {/* Wrap the component with MemoryRouter */}
+                <RegisterPage />
+            </MemoryRouter>
+        );
         expect(screen.getByLabelText("Full Name")).toBeInTheDocument();
     });
 
     it("displays the phone number field", () => {
-        render(<RegisterPage />);
+        render(
+            <MemoryRouter> {/* Wrap the component with MemoryRouter */}
+                <RegisterPage />
+            </MemoryRouter>
+        );
         expect(screen.getByLabelText("Phone Number")).toBeInTheDocument();
     });
 
     it("displays the college field", () => {
-        render(<RegisterPage />);
+        render(
+            <MemoryRouter> {/* Wrap the component with MemoryRouter */}
+                <RegisterPage />
+            </MemoryRouter>
+        );
         expect(screen.getByLabelText("College")).toBeInTheDocument();
     });
 
     it("displays the DOB field", () => {
-        render(<RegisterPage />);
+        render(
+            <MemoryRouter> {/* Wrap the component with MemoryRouter */}
+                <RegisterPage />
+            </MemoryRouter>
+        );
         expect(screen.getByLabelText("DOB")).toBeInTheDocument();
     });
 
     it("displays the location field", () => {
-        render(<RegisterPage />);
+        render(
+            <MemoryRouter> {/* Wrap the component with MemoryRouter */}
+                <RegisterPage />
+            </MemoryRouter>
+        );
         expect(screen.getByLabelText("Location")).toBeInTheDocument();
     });
-
-    /* TODO: this is a work in progress, and I need some sleep before I can fix this
-    it("validates the full name field as mandatory", () => {
-        render(<RegisterPage />);
-        const submitButton = screen.getByText("Submit");
-        expect(submitButton).toBeDisabled();
-
-        // Enter a value in the full name field
-        const fullNameInput = screen.getByLabelText("Full Name");
-        fireEvent.change(fullNameInput, { target: { value: "John Doe" } });
-
-        // Check if the submit button is enabled after entering a value in the full name field
-        expect(submitButton).not.toBeDisabled();
-    });
-
-    it("submits the form successfully", () => {
-        render(<RegisterPage />);
-
-        // Enter a value in the full name field
-        const fullNameInput = screen.getByLabelText("Full Name");
-        fireEvent.change(fullNameInput, { target: { value: "John Doe" } });
-        
-        const submitButton = screen.getByText("Submit");
-        expect(submitButton).not.toBeDisabled();
-
-        // Add form submission test logic here 
-    }); */
 });
