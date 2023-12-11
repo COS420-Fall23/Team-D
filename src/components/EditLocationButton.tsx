@@ -22,6 +22,7 @@ export function EditLocation(prop: EditLocationProp): JSX.Element {
     });
     let localUser = UserSingleton.getInstance();
     localUser.location = Location;
+    prop.setRefresh(!prop.refresh);
     setvisible(false);
   };
 

@@ -22,6 +22,7 @@ export function EditPhonenumber(prop: EditPhonenumberProp): JSX.Element {
     });
     let localUser = UserSingleton.getInstance();
     localUser.phoneNumber = phoneNumber;
+    prop.setRefresh(!prop.refresh);
     setvisible(false);
   };
 

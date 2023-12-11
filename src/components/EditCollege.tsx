@@ -22,6 +22,7 @@ export function EditCollege(prop: EditCollegeProp): JSX.Element {
     });
     let localUser = UserSingleton.getInstance();
     localUser.college = College;
+    prop.setRefresh(!prop.refresh);
     setvisible(false);
   };
 
