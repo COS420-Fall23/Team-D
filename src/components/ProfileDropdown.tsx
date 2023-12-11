@@ -57,10 +57,9 @@ export function ProfileDropdown(prop: RefreshProp): JSX.Element {
           {/* Student at {college} */}
         </Dropdown.Item>
         <DropdownDivider />
-        <Dropdown.Item
-          data-testid="savedJobs"
-          onClick={handleSaveJobsClick}
-        ></Dropdown.Item>
+        <Dropdown.Item data-testid="savedJobs" onClick={handleSaveJobsClick}>
+          Saved Jobs
+        </Dropdown.Item>
         <Dropdown.Item data-testid="settings" onClick={handleSettingsClick}>
           Settings
         </Dropdown.Item>

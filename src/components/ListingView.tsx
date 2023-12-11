@@ -10,11 +10,14 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { useState } from "react";
+import { UserSingleton } from "../data/user";
 
 export interface ListingViewProps {
   listing: JobListing;
   //flag so I can use the component on the saved jobs page and the Home page
   isSaved: boolean;
+  refresh: boolean;
+  setRefresh: (refresh: boolean) => void;
 }
 
 //Button click to save a job to the user's profile
@@ -23,6 +26,7 @@ async function saveJobClick(
   setShow: (show: boolean) => void
 ): Promise<void> {
   const userEmail = auth.currentUser?.email;
+  const user = UserSingleton.getInstance();
   if (userEmail === null || userEmail === undefined) {
     return;
   }
@@ -32,23 +36,35 @@ async function saveJobClick(
   await updateDoc(userDoc, {
     saved_jobs: arrayUnion(listing),
   });
+  user.saved_jobs.push(listing);
   console.log(userDocData.data()?.saved_jobs);
   setShow(true);
 }
 
 //Button click to unsave a job from a user profile
-async function unsaveJobClick(listing: JobListing): Promise<void> {
+async function unsaveJobClick(
+  listing: JobListing,
+  setRefresh: (show: boolean) => void,
+  refresh: boolean
+): Promise<void> {
+  const user = UserSingleton.getInstance();
   const userEmail = auth.currentUser?.email;
   if (userEmail === null || userEmail === undefined) {
     return;
   }
   const userDoc = doc(db, "User", userEmail);
+
   await updateDoc(userDoc, { saved_jobs: arrayRemove(listing) });
+
+  user.saved_jobs = user.saved_jobs.filter((job) => job !== listing);
+  setRefresh(!refresh);
 }
 
 export function ListingView({
   listing,
   isSaved,
+  refresh,
+  setRefresh,
 }: ListingViewProps): JSX.Element {
   const [show, setShow] = useState(false);
   return (
@@ -79,7 +95,10 @@ export function ListingView({
           !isSaved ? (
             <Button onClick={() => saveJobClick(listing, setShow)}>Save</Button>
           ) : (
-            <Button variant="danger" onClick={() => unsaveJobClick(listing)}>
+            <Button
+              variant="danger"
+              onClick={() => unsaveJobClick(listing, setRefresh, refresh)}
+            >
               Unsave
             </Button>
           )
