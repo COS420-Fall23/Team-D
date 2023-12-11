@@ -7,11 +7,7 @@ import { auth } from "../firebaseConfig";
 export function JobList({ listings }: { listings: JobListing[] }): JSX.Element {
   const [refresh, setRefresh] = useState(false);
 
-  waitForUser(UserSingleton.getInstance(), refresh, setRefresh, "JobList");
-
-  auth.onAuthStateChanged((user) => {
-    waitForUser(UserSingleton.getInstance(), refresh, setRefresh, "JobList");
-  });
+  waitForUser(UserSingleton.getInstance(), refresh, setRefresh, "JobList", false);
 
   return (
     <div className="feedBox">

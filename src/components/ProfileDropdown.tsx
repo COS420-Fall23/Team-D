@@ -2,7 +2,7 @@ import { Dropdown, DropdownDivider } from "react-bootstrap";
 import { auth } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { RefreshProp } from "./Header";
-import { UserSingleton, waitForUser } from "../data/user";
+import { UserSingleton, delay, waitForUser } from "../data/user";
 import { useState } from "react";
 
 export function ProfileDropdown(prop: RefreshProp): JSX.Element {
@@ -17,8 +17,9 @@ export function ProfileDropdown(prop: RefreshProp): JSX.Element {
     // while (auth.currentUser !== null) {
     //   //console.log("waiting for user to be logged out");
     // }
-    prop.setRefresh(!prop.refresh);
+    
     navigate("/");
+    prop.setRefresh(!prop.refresh);
   }
 
   function handleSettingsClick(): void {
@@ -34,7 +35,7 @@ export function ProfileDropdown(prop: RefreshProp): JSX.Element {
     }
   }
 
-  waitForUser(user, prop.refresh, prop.setRefresh, "ProfileDropdown");
+  waitForUser(user, prop.refresh, prop.setRefresh, "ProfileDropdown", true);
 
   return (
     <Dropdown data-testid="profileDropdown">

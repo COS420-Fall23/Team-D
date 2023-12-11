@@ -3,7 +3,7 @@ import { auth, db } from "../firebaseConfig";
 import { JobListing } from "./job_listing";
 import { User } from "./userInterface";
 
-function delay(ms: number) {
+export function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
@@ -11,7 +11,8 @@ export async function waitForUser(
   user: User,
   refresh: boolean,
   setRefresh: (refresh: boolean) => void,
-  calledFrom: string = ""
+  calledFrom: string = "",
+  lateRefresh: boolean = true
 ) {
   await delay(100);
   let count = 0;
@@ -30,7 +31,10 @@ export async function waitForUser(
           calledFrom !== "" ? ` <- ${calledFrom}` : ""
         }] user is not logged in`
       );
-      setRefresh(!refresh);
+      if (lateRefresh) {
+        setRefresh(!refresh);
+      }
+      //setRefresh(!refresh);
       return;
     }
     count++;
@@ -48,7 +52,10 @@ export async function waitForUser(
           calledFrom !== "" ? ` <- ${calledFrom}` : ""
         }] user is not logged in`
       );
-      setRefresh(!refresh);
+      if (lateRefresh) {
+        setRefresh(!refresh);
+      }
+      //setRefresh(!refresh);
       return;
     }
     count++;
