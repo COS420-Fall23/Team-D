@@ -3,7 +3,7 @@ import { auth, db } from "../firebaseConfig";
 import { JobListing } from "./job_listing";
 import { User } from "./userInterface";
 
-export function delay(ms: number) {
+function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 

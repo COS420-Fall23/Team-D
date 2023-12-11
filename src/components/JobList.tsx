@@ -2,7 +2,6 @@ import { useState } from "react";
 import { JobListing } from "../data/job_listing";
 import { ListingView } from "./ListingView";
 import { UserSingleton, waitForUser } from "../data/user";
-import { auth } from "../firebaseConfig";
 
 export function JobList({ listings }: { listings: JobListing[] }): JSX.Element {
   const [refresh, setRefresh] = useState(false);

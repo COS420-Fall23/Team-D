@@ -2,7 +2,7 @@ import { Dropdown, DropdownDivider } from "react-bootstrap";
 import { auth } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { RefreshProp } from "./Header";
-import { UserSingleton, delay, waitForUser } from "../data/user";
+import { UserSingleton, waitForUser } from "../data/user";
 import { useState } from "react";
 
 export function ProfileDropdown(prop: RefreshProp): JSX.Element {
