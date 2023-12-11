@@ -7,6 +7,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 export interface LoginButtonProp {
   refresh: boolean;
   setRefresh: (refresh: boolean) => void;
+  setLogin: (isLogedIn: boolean) => void;
 }
 
 export function HomeProfileDropDownButton(prop: LoginButtonProp): JSX.Element {
@@ -15,6 +16,7 @@ export function HomeProfileDropDownButton(prop: LoginButtonProp): JSX.Element {
   function logout(): void {
     auth.signOut();
     prop.setRefresh(!prop.refresh);
+    prop.setLogin(false);
     navigate("/");
   }
 
