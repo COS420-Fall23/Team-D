@@ -15,7 +15,7 @@ export function AccountSettingsPage(): JSX.Element {
   waitForUser(localUser, refresh, setRefresh, "AccountSettingsPage");
 
   return (
-    <div>
+    <div className="accountSettings">
       <Header></Header>
       <h1>Account Settings</h1>
       <div data-testid="Email">

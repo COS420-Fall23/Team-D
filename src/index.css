@@ -61,7 +61,7 @@ header .dropdown {
 }
 
 .listing button {
-  margin: 0 4px;
+  margin: 0 4px 10px;
 }
 
 .listing-page .content {
@@ -127,4 +127,21 @@ header .dropdown {
 
 #resource-page ul {
   list-style: none;
+}
+
+.accountSettings {
+  margin: 0 auto;
+}
+
+.accountSettings div {
+  margin-bottom: 20px;
+}
+
+.accountSettings .btn-group {
+  padding: 10px;
+}
+
+.skillsForm {
+  max-width: 800px;
+  margin: 0 auto;
 }
