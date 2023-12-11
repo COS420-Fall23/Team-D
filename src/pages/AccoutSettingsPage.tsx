@@ -1,45 +1,25 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-//import { ProfileDropDownButton } from "../components/ProfileDropdown";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { Query, QueryDocumentSnapshot, collection, doc, getDoc } from "firebase/firestore";
-import { auth, db } from "../firebaseConfig";
 import { Header } from "../components/Header";
+import { UserSingleton, waitForUser } from "../data/user";
 
 export function AccountSettingsPage(): JSX.Element {
-  const [user, setUser] = React.useState(null as QueryDocumentSnapshot | null);
+  const [localUser, setLocalUser] = React.useState(UserSingleton.getInstance());
+  const [refresh, setRefresh] = React.useState(false);
 
-  async function getUser() {
-    if (auth.currentUser === null) {
-      return;
-    }
-    const docSnap = await getDoc(doc(db, "User", auth.currentUser?.email as string));
-    if (docSnap.exists()) {
-      setUser(docSnap);
-      console.log("Document data:", docSnap.data());
-    }
-    //setUser(docSnap.exists() ? docSnap : null);
-  }
-
-  async function updateUser() {
-    if (user === null) {
-      await getUser();
-    }
-  }
-
-  updateUser();
+  waitForUser(localUser, refresh, setRefresh, "AccountSettingsPage");
 
   return (
     <div>
       <Header></Header>
       <h1>Account Settings</h1>
       {/* <div data-testid="Email">Email {user?.data().Email} </div> */}
-      <div data-testid="Email">Email {user !== null ? user.data().email : "Loading..."} </div>
+      <div data-testid="Email">Email {localUser !== null ? localUser.email : "Loading..."} </div>
       <div>
         Password <Button>ResetPassword</Button>
       </div>
       {/* <div data-testid="Phone">Phone {user?.data().phoneNumber}</div> */}
-      <div data-testid="Phone">Phone {user !== null ? user.data().phoneNumber : "Loading..."}</div>
+      <div data-testid="Phone">Phone {localUser !== null ? localUser.phoneNumber : "Loading..."}</div>
       <div>Site Filter</div>
       <div>Job Keywords</div>
     </div>

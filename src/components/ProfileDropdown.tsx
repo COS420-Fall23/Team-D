@@ -1,45 +1,34 @@
 import { Dropdown, DropdownDivider } from "react-bootstrap";
-import { auth, db } from "../firebaseConfig";
-import { collection, doc, getDoc } from "firebase/firestore";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { Link, useNavigate } from "react-router-dom";
+import { auth, } from "../firebaseConfig";
+import { useNavigate } from "react-router-dom";
 import { RefreshProp } from "./Header";
+import { UserSingleton, waitForUser } from "../data/user";
 import { useState } from "react";
 
+
 export function ProfileDropdown(prop: RefreshProp): JSX.Element {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [value, loading, error] = useCollection( collection(db, "User") );
-  const [user, setUser] = useState(null as any); // [fullName, setFullName
-  const [fullName, setFullName] = useState("Loading...");
-  const [college, setCollege] = useState("Loading...");
-  const [refresh, setRefresh] = useState(false);
+  const [user, setUser] = useState(UserSingleton.getInstance());
+  //const [refresh, setRefresh] = useState(false);
   const navigate = useNavigate();
 
   function logout(): void {
     auth.signOut();
+    // wait for the user to be logged out before refreshing the page
+    // while (auth.currentUser !== null) {
+    //   //console.log("waiting for user to be logged out");
+    // }
     prop.setRefresh(!prop.refresh);
     navigate("/");
   }
 
-  // async function getUser() {
-  //   if (auth.currentUser === null) {
-  //     return;
-  //   }
-  //   const docSnap = await getDoc(doc(db, "User", auth.currentUser?.email as string));
-  //   console.log("db query")
-  //   setFullName(docSnap.exists() ? docSnap.data().fullName : "Error");
-  //   setCollege(docSnap.exists() ? docSnap.data().college : "Error");
-  // }
-
-  // getUser();
-  let email = auth.currentUser?.email;
-  auth.onAuthStateChanged((user) => {
-    if (email !== user?.email) {
-      setUser(value?.docs.find((doc) => doc.id === auth.currentUser?.email));
-      console.log("refreshing profile dropdown");
+  function handleSettingsClick(): void {
+    // if we are not already on the settings page, navigate to it
+    if (window.location.pathname !== "/settings") {
+      navigate("/settings");
     }
-  });
-  //const firebaseUser = value?.docs.find((doc) => doc.id === auth.currentUser?.email);
+  }
+
+  waitForUser(user, prop.refresh, prop.setRefresh, "ProfileDropdown");
 
   return (
     <Dropdown data-testid="profileDropdown">
@@ -52,18 +41,18 @@ export function ProfileDropdown(prop: RefreshProp): JSX.Element {
           disabled={true}
           style={{ color: "black", fontWeight: "bold" }}
         >
-          {user?.exists() ? user.data().FullName : "Loading..."}
+          {user?.fullName ? user.fullName : "Loading..."}
           {/* {firebaseUser?.exists() ? firebaseUser.data().FullName : "Loading..."} */}
           {/* {fullName} */}
         </Dropdown.Item>
         <Dropdown.Item disabled={true} style={{ color: "gray" }}>
-          Student at {user?.exists() ? user.data().College : "Loading..."}
+          Student at {user?.college ? user.college : "Loading..."}
           {/* Student at {firebaseUser?.exists() ? firebaseUser.data().College : "Loading..."} */}
           {/* Student at {college} */}
         </Dropdown.Item>
         <DropdownDivider />
-        <Dropdown.Item data-testid="settings">
-          {<Link to={"/settings"}>Settings</Link>}
+        <Dropdown.Item data-testid="settings" onClick={handleSettingsClick}>
+          Settings
         </Dropdown.Item>
         <Dropdown.Item onClick={() => logout()}>Sign Out</Dropdown.Item>
       </Dropdown.Menu>

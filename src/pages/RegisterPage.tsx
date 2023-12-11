@@ -4,6 +4,7 @@ import { auth, db } from "../firebaseConfig";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
+import { UserSingleton } from "../data/user";
 
 
 
@@ -54,7 +55,7 @@ export function RegisterPage(): JSX.Element {
             college: college,
             dob: dob,
             location: location,
-            //email: auth.currentUser?.email,
+            email: auth.currentUser?.email,
             saved_jobs: [""]
         };
         let id = auth.currentUser?.email?.toString();
@@ -62,6 +63,17 @@ export function RegisterPage(): JSX.Element {
             throw new Error("auth has no current user, which means auth is not initialized or no user logged in. This should not be possible");
         }
         setDoc(doc(db, "User", id), payload);
+        console.log("user added to database");
+        // update the user's info in the UserSingleton
+        let localUser = UserSingleton.getInstance();
+        localUser.fullName = fullName;  
+        localUser.email = auth.currentUser?.email as string;
+        localUser.phoneNumber = phoneNumber;
+        localUser.college = college;
+        localUser.dob = dob;
+        localUser.location = location;
+        localUser.saved_jobs = [];
+        console.log("user added to UserSingleton");
         // redirect to home page
         navigate("/");
     };
@@ -71,10 +83,9 @@ export function RegisterPage(): JSX.Element {
     };
 
     // get the user's email from firebase auth, check if the user exists in the database, and redirect to home page if they do
-    const email = auth.currentUser?.email;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [value, loading, error] = useCollection(collection(db, "User"));
-    const firebaseUser = value?.docs.find((doc) => doc.data().email === email);
+    const firebaseUser = value?.docs.find((doc) => doc.id === auth.currentUser?.email);
     if (firebaseUser !== undefined) {
         console.log("user found in database, redirecting to home page");
         navigate("/");

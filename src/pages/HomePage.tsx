@@ -34,9 +34,9 @@ export function HomePage({
         );
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            console.log("user is signed in");
+            console.log("[home] user is signed in");
         } else {
-            console.log("user is not signed in");
+            console.log("[home] user is not signed in");
         }
     });
     

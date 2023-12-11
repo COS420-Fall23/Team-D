@@ -1,7 +1,7 @@
 // Uses firebase/auth to sign in with Google. This is a button that will be used in the header of the page. The button should be disabled if the user is already logged in. The button should be enabled if the user is not logged in. When the button is clicked, the user should be prompted to sign in with Google. If the user is already logged in, the button should not do anything. The button should be styled using Bootstrap. The button should be named "Login".
 
 import { Button } from "react-bootstrap";
-import { GoogleAuthProvider, signInWithPopup, setPersistence, browserSessionPersistence  } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, db } from "../firebaseConfig";
 import { collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -29,14 +29,14 @@ export function LoginButton(prop: RefreshProp): JSX.Element {
             // check if user exists in database
             // if not, redirect to register page 
             const firebaseUser = value?.docs.find((doc) => doc.id === gAuthUser.email);
-            console.log("db query - login button")
+            console.log("[loginButton] !!db query!!")
             if (firebaseUser === undefined) {
-                console.log("user not found in database");                    
+                console.log("[loginButton] user not found in database");                    
                 navigate("/register");
             }
             else {
                 // refresh header if user is found in database
-                console.log("user found in database");
+                console.log("[loginButton] user found in database");
                 prop.setRefresh(!prop.refresh);
             }
 
@@ -49,7 +49,7 @@ export function LoginButton(prop: RefreshProp): JSX.Element {
             // The AuthCredential type that was used.
             const credential = GoogleAuthProvider.credentialFromError(error);
             // ...
-            console.log("error signing in"); // DEBUG 
+            console.log("[loginButton] error signing in"); // DEBUG 
             console.log(errorCode, errorMessage, email, credential); // DEBUG
         });
     }
