@@ -15,7 +15,7 @@ export function ResourcePage(): JSX.Element {
   }
 
   return (
-    <div>
+    <div id="resource-page">
       <h1>Resource Page</h1>
       <div>
         <Link to="/">Back to Home Page</Link>

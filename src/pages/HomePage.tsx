@@ -5,7 +5,6 @@ import { SearchAndFilter } from "../components/SearchAndFilter";
 import { JobListing } from "../data/job_listing";
 import { onAuthStateChanged } from "firebase/auth";
 import { Header } from "../components/Header";
-import MyButtonLink from "../components/MyButtonLink";
 
 export function HomePage({
   listings,
@@ -14,7 +13,6 @@ export function HomePage({
 }): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterLocation, setFilterLocation] = useState("");
-  //const [refresh, setRefresh] = useState(false);
 
   const filteredListings = listings
     .filter(
@@ -39,11 +37,7 @@ export function HomePage({
   return (
     <div>
       <Header></Header>
-      <h2>
-        <div>
-          <MyButtonLink to="/resources">Resource Page</MyButtonLink>
-        </div>
-      </h2>
+      
       <SearchAndFilter
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}

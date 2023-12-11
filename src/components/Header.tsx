@@ -3,6 +3,7 @@ import { auth } from "../firebaseConfig";
 import { ProfileDropdown } from "./ProfileDropdown";
 import { LoginButton } from "./LoginButton";
 import { useNavigate } from "react-router-dom";
+import MyButtonLink from "./MyButtonLink";
 
 export interface RefreshProp {
   refresh: boolean;
@@ -26,14 +27,17 @@ export function Header(): JSX.Element {
     <div>
       <header>
         <h1 onClick={handleHomeClick}>College Jobs</h1>
-        {auth.currentUser ? (
-          <ProfileDropdown
-            refresh={refresh}
-            setRefresh={setRefresh}
-          ></ProfileDropdown>
-        ) : (
-          <LoginButton refresh={refresh} setRefresh={setRefresh}></LoginButton>
-        )}
+        <div>
+          <MyButtonLink to="/resources">Resource Page</MyButtonLink>
+          {auth.currentUser ? (
+            <ProfileDropdown
+              refresh={refresh}
+              setRefresh={setRefresh}
+            ></ProfileDropdown>
+          ) : (
+            <LoginButton refresh={refresh} setRefresh={setRefresh}></LoginButton>
+          )}
+        </div>
       </header>
     </div>
   );

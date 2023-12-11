@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { JobListing } from "../data/job_listing";
 import { ListingView } from "./ListingView";
+import { UserSingleton, waitForUser } from "../data/user";
 
 export function JobList({ listings }: { listings: JobListing[] }): JSX.Element {
   const [refresh, setRefresh] = useState(false);
+
+  waitForUser(UserSingleton.getInstance(), refresh, setRefresh, "JobList", false);
+
   return (
     <div className="feedBox">
       {listings.map(
