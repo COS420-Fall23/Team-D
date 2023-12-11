@@ -22,8 +22,8 @@ export function SavedJobsPage(): JSX.Element {
   return (
     <div>
       <header>
-        <h1>College Jobs</h1>
-        <ProfileDropDownButton></ProfileDropDownButton>
+        <h1 data-testid="CollegeJobs">College Jobs</h1>
+        <ProfileDropDownButton data-testid="DropDown"></ProfileDropDownButton>
       </header>
       {FireBaseUser.data()?.saved_jobs.length === 0 ? (
         <h1>No Saved Jobs</h1>
