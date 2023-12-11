@@ -7,6 +7,7 @@ import { useState } from "react";
 
 
 export function ProfileDropdown(prop: RefreshProp): JSX.Element {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, setUser] = useState(UserSingleton.getInstance());
   //const [refresh, setRefresh] = useState(false);
   const navigate = useNavigate();

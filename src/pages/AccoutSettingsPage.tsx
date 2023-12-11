@@ -4,6 +4,7 @@ import { Header } from "../components/Header";
 import { UserSingleton, waitForUser } from "../data/user";
 
 export function AccountSettingsPage(): JSX.Element {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [localUser, setLocalUser] = React.useState(UserSingleton.getInstance());
   const [refresh, setRefresh] = React.useState(false);
 
