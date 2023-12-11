@@ -1,21 +1,26 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { render, screen } from "@testing-library/react";
 import { SavedJobsPage } from "../pages/SavedJobPage";
+import { MemoryRouter } from "react-router-dom";
 
 describe("Simple tests for the saved jobs page", () => {
-  beforeEach(() => {
-    // eslint-disable-next-line testing-library/no-render-in-setup
-    render(<SavedJobsPage />);
-  });
-  test("Saved jobs page displays app title", () => {});
-
-  /*test("Saved jobs page displays app title", () => {
+  test("Saved jobs page displays app title", () => {
+    render(
+      <MemoryRouter>
+        <SavedJobsPage />
+      </MemoryRouter>
+    );
     const appTitle = screen.getByText("College Jobs");
     expect(appTitle).toBeInTheDocument();
   });
 
   test("Saved jobs page displays profile dropdown", () => {
-    const profileDropdown = screen.getByTestId("DropDown");
-    expect(profileDropdown).toBeInTheDocument();
-  });*/
+    render(
+      <MemoryRouter>
+        <SavedJobsPage />
+      </MemoryRouter>
+    );
+    const LoginButton = screen.getByText("Login");
+    expect(LoginButton).toBeInTheDocument();
+  });
 });
