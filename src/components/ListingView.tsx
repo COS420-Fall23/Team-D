@@ -75,12 +75,16 @@ export function ListingView({
         >
           <Alert.Heading>Job Saved</Alert.Heading>
         </Alert>
-        {!isSaved ? (
-          <Button onClick={() => saveJobClick(listing, setShow)}>Save</Button>
+        {auth.currentUser ? (
+          !isSaved ? (
+            <Button onClick={() => saveJobClick(listing, setShow)}>Save</Button>
+          ) : (
+            <Button variant="danger" onClick={() => unsaveJobClick(listing)}>
+              Unsave
+            </Button>
+          )
         ) : (
-          <Button variant="danger" onClick={() => unsaveJobClick(listing)}>
-            Unsave
-          </Button>
+          <></>
         )}
       </div>
     </div>
