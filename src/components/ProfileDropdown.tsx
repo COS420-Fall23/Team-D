@@ -1,18 +1,40 @@
 import { Dropdown, DropdownDivider } from "react-bootstrap";
-import { auth, db } from "../firebaseConfig";
-import { collection } from "firebase/firestore";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { Link } from "react-router-dom";
+import { auth } from "../firebaseConfig";
+import { useNavigate } from "react-router-dom";
+import { RefreshProp } from "./Header";
+import { UserSingleton, waitForUser } from "../data/user";
+import { useState } from "react";
 
-export function ProfileDropDownButton(): JSX.Element {
+export function ProfileDropdown(prop: RefreshProp): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [value, CollegtionLoading, CollectionError] = useCollection(
-    collection(db, "User")
-  );
+  const [user, setUser] = useState(UserSingleton.getInstance());
+  //const [refresh, setRefresh] = useState(false);
+  const navigate = useNavigate();
 
-  const FireBaseUser = value?.docs.find(
-    (User): boolean => User.data().Email === auth.currentUser?.email
-  );
+  function logout(): void {
+    auth.signOut();
+    // wait for the user to be logged out before refreshing the page
+    // while (auth.currentUser !== null) {
+    //   //console.log("waiting for user to be logged out");
+    // }
+    prop.setRefresh(!prop.refresh);
+    navigate("/");
+  }
+
+  function handleSettingsClick(): void {
+    // if we are not already on the settings page, navigate to it
+    if (window.location.pathname !== "/settings") {
+      navigate("/settings");
+    }
+  }
+  function handleSaveJobsClick(): void {
+    // if we are not already on the Saved Jobs page, navigate to it
+    if (window.location.pathname !== "/savedJobs") {
+      navigate("/savedJobs");
+    }
+  }
+
+  waitForUser(user, prop.refresh, prop.setRefresh, "ProfileDropdown");
 
   return (
     <Dropdown data-testid="profileDropdown">
@@ -25,18 +47,24 @@ export function ProfileDropDownButton(): JSX.Element {
           disabled={true}
           style={{ color: "black", fontWeight: "bold" }}
         >
-          {FireBaseUser?.data().FullName}
+          {user?.fullName ? user.fullName : "Loading..."}
+          {/* {firebaseUser?.exists() ? firebaseUser.data().FullName : "Loading..."} */}
+          {/* {fullName} */}
         </Dropdown.Item>
         <Dropdown.Item disabled={true} style={{ color: "gray" }}>
-          Student at {FireBaseUser?.data().College}
+          Student at {user?.college ? user.college : "Loading..."}
+          {/* Student at {firebaseUser?.exists() ? firebaseUser.data().College : "Loading..."} */}
+          {/* Student at {college} */}
         </Dropdown.Item>
         <DropdownDivider />
-        <Dropdown.Item data-testid="savedJobs">
-          {<Link to={"/savedJobs"}>Saved Jobs</Link>}
+        <Dropdown.Item
+          data-testid="savedJobs"
+          onClick={handleSaveJobsClick}
+        ></Dropdown.Item>
+        <Dropdown.Item data-testid="settings" onClick={handleSettingsClick}>
+          Settings
         </Dropdown.Item>
-        <Dropdown.Item data-testid="settings">
-          {<Link to={"/settings"}>Settings</Link>}
-        </Dropdown.Item>
+        <Dropdown.Item onClick={() => logout()}>Sign Out</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
