@@ -45,6 +45,12 @@ header button {
   padding: 0;
 }
 
+header .dropdown {
+  position: relative;
+  display: inline-block;
+  height: 50px;
+}
+
 .listing {
   background-color: #e6e6e6;
   border-radius: 40px;
@@ -102,14 +108,14 @@ header button {
 
 .my-button-link {
   /* Add your desired styles here */
+  height: 50px;
   text-decoration: none;
   display: inline-block;
   padding: 10px 20px;
   font-size: 18px;
-  background-color: white;
-  color: hsl(0, 0%, 0%);
+  background-color: #0d6efd;
+  color: white;
   border-radius: 5px;
-  border: 2px solid #0066ff;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }

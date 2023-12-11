@@ -39,11 +39,7 @@ export function HomePage({
   return (
     <div>
       <Header></Header>
-      <h2>
-        <div>
-          <MyButtonLink to="/resources">Resource Page</MyButtonLink>
-        </div>
-      </h2>
+      
       <SearchAndFilter
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
