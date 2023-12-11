@@ -119,3 +119,13 @@ header .dropdown {
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
+
+#resource-page {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#resource-page ul {
+  list-style: none;
+}
