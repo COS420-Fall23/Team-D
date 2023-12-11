@@ -45,6 +45,7 @@ export function getDummyUsers(): User[] {
     dob: "N/A",
     saved_jobs: [],
     location: "",
+    skills: [],
   });
 
   dummyUsers.push({
@@ -56,6 +57,7 @@ export function getDummyUsers(): User[] {
     dob: "N/A",
     saved_jobs: [],
     location: "",
+    skills: [],
   });
 
   dummyUsers.push({
@@ -67,6 +69,7 @@ export function getDummyUsers(): User[] {
     dob: "N/A",
     saved_jobs: [],
     location: "",
+    skills: [],
   });
 
   return dummyUsers;
