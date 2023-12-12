@@ -1,19 +1,16 @@
-import {
-  ResourceCriteriaType,
-  ResourceListing,
-} from "../data/resource_listing";
+import { ResourceListing } from "../data/resource_listing";
 
 //function to list the resource listings that go to view and post on the resource page
 
 export function getResourceListings(): ResourceListing[] {
   const listings: ResourceListing[] = [];
 
+  // Listing with only interview questions
   listings.push({
     id: 1,
-    company: "Computer Science helpful websites",
-    title: "Common interview questions and helpful Site",
-    description:
-      "Common technical interview questions and answers you can review to better yourself.",
+    company: "",
+    title: "",
+    description: "",
     interviewQuestions: [
       {
         title: "Link to indeed career guid page",
@@ -24,39 +21,15 @@ export function getResourceListings(): ResourceListing[] {
         link: "https://www.geeksforgeeks.org/",
       },
     ],
-    jobSecurityLinks: [
-      {
-        title: "Indeed IT Job Security tips",
-        link: "https://uk.indeed.com/career-advice/finding-a-job/it-job-security",
-      },
-      {
-        title: "Job Security for Developers",
-        link: "https://simpleprogrammer.com/job-security-software-developers/",
-      },
-    ],
-    //the critera might not be needed in all honesty
-    criteria: [
-      { field: ResourceCriteriaType.Location, value: "Some Location near you" },
-      { field: ResourceCriteriaType.EmploymentType, value: "Part-time" },
-      // Add more criteria as needed
-    ],
+    criteria: [],
   });
 
+  // Listing with only job security links
   listings.push({
     id: 2,
-    company: "Freelance work",
+    company: "",
     title: "Developer/IT Remote",
-    description: "Interview tips for remote work along with job security tips",
-    interviewQuestions: [
-      {
-        title: "Linked In ralent Blog",
-        link: "https://www.linkedin.com/business/talent/blog/talent-acquisition/interview-questions-for-remote-positions",
-      },
-      {
-        title: "upwork",
-        link: "https://www.upwork.com/resources/remote-interview-questions",
-      },
-    ],
+    description: "",
     jobSecurityLinks: [
       {
         title: "NCDIT",
@@ -67,18 +40,8 @@ export function getResourceListings(): ResourceListing[] {
         link: "https://www.linkedin.com/pulse/navigating-remote-work-security-challenges-solutions-isogent/",
       },
     ],
-    //the critera might not be needed in all honesty
-    criteria: [
-      { field: ResourceCriteriaType.Location, value: "At Home" },
-      {
-        field: ResourceCriteriaType.EmploymentType,
-        value: "Contract, full-time",
-      },
-      // Add more criteria as needed
-    ],
+    criteria: [],
   });
-
-  // Changed from a dummy listing to actual listings
 
   return listings;
 }

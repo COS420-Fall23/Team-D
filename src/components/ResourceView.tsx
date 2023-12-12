@@ -14,7 +14,7 @@ const ResourceView: React.FC<ResourceViewProps> = ({ listings }) => {
       <h1>Resource View</h1>
       {listings.map((listing) => (
         <div key={listing.id}>
-          <Link to={`/resources/${listings}`}>
+          <Link to={`/resources/${listing.id}`}>
             {listing.company}
             {listing.title}
             {listing.description}

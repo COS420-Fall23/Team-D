@@ -6,7 +6,6 @@ import { getResourceListings } from "../dummy/resource_listings";
 
 export function ResourcePage(): JSX.Element {
   const listings: ResourceListing[] = getResourceListings();
-  console.log("Listings:", listings);
 
   if (!listings) {
     console.log("No listings available.");
@@ -23,46 +22,49 @@ export function ResourcePage(): JSX.Element {
 
       {listings.map((listing) => (
         <div key={listing.id}>
-          <div>
-            <h3>Helpful Interview Questions</h3>
-            <ul>
-              {listing.interviewQuestions.map((question, index) => (
-                <li key={index}>
-                  <a
-                    href={question.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {question.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <h2>{listing.company}</h2>
+          <p>{listing.description}</p>
 
-          <div>
-            <h3>Job Security Links</h3>
-            <ul>
-              {listing.jobSecurityLinks.map((link, index) => (
-                <li key={index}>
-                  <a href={link.link} target="_blank" rel="noopener noreferrer">
-                    {link.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {listing.interviewQuestions && (
+            <div>
+              <h3>Helpful Interview Questions</h3>
+              <ul>
+                {listing.interviewQuestions.map((question, index) => (
+                  <li key={index}>
+                    <a
+                      href={question.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {question.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-          <h3>Resource Criteria</h3>
-          <ul>
-            {listing.criteria.map((criteria, index) => (
-              <li key={index}>
-                {criteria.field}: {criteria.value}
-              </li>
-            ))}
-          </ul>
+          {/* Render Job Security Links if they exist */}
+          {listing.jobSecurityLinks && (
+            <div>
+              <h3>Job Security Links</h3>
+              <ul>
+                {listing.jobSecurityLinks.map((link, index) => (
+                  <li key={index}>
+                    <a
+                      href={link.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-          <hr />
+          {/* Render Resource Criteria */}
         </div>
       ))}
     </div>
