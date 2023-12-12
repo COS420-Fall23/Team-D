@@ -27,6 +27,6 @@ export interface ResourceListing {
   title: string;
   description: string;
   criteria: ResourceCriteriaItem[];
-  interviewQuestions: InterviewQuestion[];
-  jobSecurityLinks: JobSecurityLink[];
+  interviewQuestions?: InterviewQuestion[]; // Make it optional
+  jobSecurityLinks?: JobSecurityLink[]; // Make it optional
 }
