@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'; // Add the missing import for getByText
 import { Header } from '../components/Header';
-import { MemoryRouter, useLocation } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 test('renders correct text based on page', () => {
     // Render the header component with a specific initial route
