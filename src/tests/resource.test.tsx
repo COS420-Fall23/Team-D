@@ -23,17 +23,16 @@ describe("ResourcePage", () => {
     (getResourceListings as jest.Mock).mockReturnValue(dummyListings);
 
     // Render the component within a MemoryRouter
+    // memory router should have the /resources route
     render(
-      <MemoryRouter>
+      <MemoryRouter initialEntries={['/resources']}>
         <ResourcePage />
       </MemoryRouter>
     );
 
     // Assertions
-    expect(screen.getByText("Resource Page")).toBeInTheDocument();
-    expect(screen.getByText("Back to Home Page").getAttribute("href")).toBe(
-      "/"
-    );
+    expect(screen.getByText("Resources For College Job Hunters")).toBeInTheDocument();
+    expect(screen.getByText("Home Page")).toBeInTheDocument(); // This has been moved to header.test.tsx
 
     // Check if the dummy listing content is rendered
     const helpfulInterviewQuestions = screen.queryAllByText(
@@ -45,6 +44,8 @@ describe("ResourcePage", () => {
       expect(questions).toBeInTheDocument();
       // Add more expectations based on your actual content
     });
+
+    
 
     // You can add more assertions based on your actual content
   });
