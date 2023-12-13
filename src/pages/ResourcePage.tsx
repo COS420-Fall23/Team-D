@@ -1,5 +1,3 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import { ResourceListing } from "../data/resource_listing";
 import { getResourceListings } from "../dummy/resource_listings";
 import { Header } from "../components/Header";
