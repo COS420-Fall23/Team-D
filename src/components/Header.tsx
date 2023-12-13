@@ -2,7 +2,7 @@ import { useState } from "react";
 import { auth } from "../firebaseConfig";
 import { ProfileDropdown } from "./ProfileDropdown";
 import { LoginButton } from "./LoginButton";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import MyButtonLink from "./MyButtonLink";
 
 export interface RefreshProp {
@@ -13,12 +13,13 @@ export interface RefreshProp {
 export function Header(): JSX.Element {
   const [refresh, setRefresh] = useState(false);
   let navigate = useNavigate();
+  let location = useLocation();
 
   console.log("[header] rendering header");
 
   function handleHomeClick(): void {
     // if we are not already on the home page, navigate to it
-    if (window.location.pathname !== "/") {
+    if (location.pathname !== "/") {
       navigate("/");
     }
   }
@@ -29,7 +30,7 @@ export function Header(): JSX.Element {
         <h1 onClick={handleHomeClick}>College Jobs</h1>
         <div>
           { /* link to resource page unless on resource page, then link to home page */}
-          {window.location.pathname !== "/resources" ? <MyButtonLink to="/resources">Resource Page</MyButtonLink> : <MyButtonLink to="/">Home Page</MyButtonLink>}
+          {location.pathname !== "/resources" ? <MyButtonLink to="/resources">Resource Page</MyButtonLink> : <MyButtonLink to="/">Home Page</MyButtonLink>}
           {auth.currentUser ? (
             <ProfileDropdown
               refresh={refresh}
