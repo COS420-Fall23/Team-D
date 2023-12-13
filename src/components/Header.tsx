@@ -28,7 +28,8 @@ export function Header(): JSX.Element {
       <header>
         <h1 onClick={handleHomeClick}>College Jobs</h1>
         <div>
-          <MyButtonLink to="/resources">Resource Page</MyButtonLink>
+          { /* link to resource page unless on resource page, then link to home page */}
+          {window.location.pathname !== "/resources" ? <MyButtonLink to="/resources">Resource Page</MyButtonLink> : <MyButtonLink to="/">Home Page</MyButtonLink>}
           {auth.currentUser ? (
             <ProfileDropdown
               refresh={refresh}

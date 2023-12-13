@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ResourceListing } from "../data/resource_listing";
 import { getResourceListings } from "../dummy/resource_listings";
+import { Header } from "../components/Header";
 //Main build of the page. will need to be formated to a css file. This shows the listings that it pulls from the other files.
 
 export function ResourcePage(): JSX.Element {
@@ -14,11 +15,10 @@ export function ResourcePage(): JSX.Element {
   }
 
   return (
-    <div id="resource-page">
-      <h1>Resource Page</h1>
-      <div>
-        <Link to="/">Back to Home Page</Link>
-      </div>
+    <div >
+      <Header></Header>
+      <div id="resource-page">
+      <h1>Resources For College Job Hunters</h1>
 
       {listings.map((listing) => (
         <div key={listing.id}>
@@ -67,6 +67,7 @@ export function ResourcePage(): JSX.Element {
           {/* Render Resource Criteria */}
         </div>
       ))}
+      </div>
     </div>
   );
 }
