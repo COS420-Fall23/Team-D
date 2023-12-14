@@ -121,7 +121,13 @@ export class UserSingleton implements User {
     public static setLocation(location: string) { UserSingleton.getInstance().location = location; UserSingleton.notifyListeners(); }
     public static setSavedJobs(saved_jobs: Array<JobListing>) { UserSingleton.getInstance().saved_jobs = saved_jobs; UserSingleton.notifyListeners(); }
     public static setSkills(skills: Array<string>) { UserSingleton.getInstance().skills = skills; UserSingleton.notifyListeners(); }
-    public static addSavedJob(job: JobListing) { UserSingleton.getInstance().saved_jobs.push(job); UserSingleton.notifyListeners(); }
+    public static addSavedJob(job: JobListing) { 
+        if (UserSingleton.getInstance().saved_jobs.includes(job)) {
+            return;
+        }
+        UserSingleton.getInstance().saved_jobs.push(job);
+        UserSingleton.notifyListeners(); 
+    }
     public static removeSavedJob(job: JobListing) { UserSingleton.getInstance().saved_jobs = UserSingleton.getInstance().saved_jobs.filter((savedJob) => savedJob !== job); UserSingleton.notifyListeners(); }
     public static addSkill(skill: string) { UserSingleton.getInstance().skills.push(skill); UserSingleton.notifyListeners(); }
     public static removeSkill(skill: string) { UserSingleton.getInstance().skills = UserSingleton.getInstance().skills.filter((savedSkill) => savedSkill !== skill); UserSingleton.notifyListeners(); }

@@ -26,7 +26,6 @@ async function saveJobClick(
   setShow: (show: boolean) => void
 ): Promise<void> {
   const userEmail = auth.currentUser?.email;
-  const user = UserSingleton.getInstance();
   if (userEmail === null || userEmail === undefined) {
     return;
   }
@@ -36,7 +35,7 @@ async function saveJobClick(
   await updateDoc(userDoc, {
     saved_jobs: arrayUnion(listing),
   });
-  user.saved_jobs.push(listing);
+  UserSingleton.addSavedJob(listing);
   console.log(userDocData.data()?.saved_jobs);
   setShow(true);
 }
@@ -44,10 +43,7 @@ async function saveJobClick(
 //Button click to unsave a job from a user profile
 async function unsaveJobClick(
   listing: JobListing,
-  setRefresh: (show: boolean) => void,
-  refresh: boolean
 ): Promise<void> {
-  const user = UserSingleton.getInstance();
   const userEmail = auth.currentUser?.email;
   if (userEmail === null || userEmail === undefined) {
     return;
@@ -56,7 +52,7 @@ async function unsaveJobClick(
 
   await updateDoc(userDoc, { saved_jobs: arrayRemove(listing) });
 
-  user.saved_jobs = user.saved_jobs.filter((job) => job !== listing);
+  UserSingleton.removeSavedJob(listing);
 }
 
 export function ListingView({
@@ -66,6 +62,8 @@ export function ListingView({
   setRefresh,
 }: ListingViewProps): JSX.Element {
   const [show, setShow] = useState(false);
+
+  //UserSingleton.addListener(refresh, setRefresh, "ListingView");
   
   return (
     <div className="listing">
@@ -97,7 +95,7 @@ export function ListingView({
           ) : (
             <Button
               variant="danger"
-              onClick={() => unsaveJobClick(listing, setRefresh, refresh)}
+              onClick={() => unsaveJobClick(listing)}
             >
               Unsave
             </Button>
