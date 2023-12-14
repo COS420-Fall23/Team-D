@@ -4,10 +4,6 @@ import { auth, db } from "../firebaseConfig";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
-import { UserSingleton } from "../data/user";
-
-
-
 
 export function RegisterPage(): JSX.Element {
     // This was generated using github copilot
@@ -47,7 +43,7 @@ export function RegisterPage(): JSX.Element {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // Add form submission logic here
-        console.log("form submitted")
+        console.log("[registerPage] form submitted")
         // add the user to the database
         const payload = {
             fullName: fullName,
@@ -64,18 +60,7 @@ export function RegisterPage(): JSX.Element {
             throw new Error("auth has no current user, which means auth is not initialized or no user logged in. This should not be possible");
         }
         setDoc(doc(db, "User", id), payload);
-        console.log("user added to database");
-        // update the user's info in the UserSingleton
-        let localUser = UserSingleton.getInstance();
-        localUser.fullName = fullName;  
-        localUser.email = auth.currentUser?.email as string;
-        localUser.phoneNumber = phoneNumber;
-        localUser.college = college;
-        localUser.dob = dob;
-        localUser.location = location;
-        localUser.saved_jobs = [];
-        console.log("user added to UserSingleton");
-        // redirect to home page
+        console.log("[registerPage] user added to auth database");
         navigate("/");
     };
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import { UserSingleton } from "../data/user";
+import { UserSingleton } from "../data/UserSingleton";
 
 interface EditFullNameProp {
   userEmail: string;

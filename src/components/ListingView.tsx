@@ -10,7 +10,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { useState } from "react";
-import { UserSingleton } from "../data/user";
+import { UserSingleton } from "../data/UserSingleton";
 
 export interface ListingViewProps {
   listing: JobListing;
@@ -57,7 +57,6 @@ async function unsaveJobClick(
   await updateDoc(userDoc, { saved_jobs: arrayRemove(listing) });
 
   user.saved_jobs = user.saved_jobs.filter((job) => job !== listing);
-  setRefresh(!refresh);
 }
 
 export function ListingView({
@@ -67,6 +66,7 @@ export function ListingView({
   setRefresh,
 }: ListingViewProps): JSX.Element {
   const [show, setShow] = useState(false);
+  
   return (
     <div className="listing">
       <h3>{listing.company}</h3>

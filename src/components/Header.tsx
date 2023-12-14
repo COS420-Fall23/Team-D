@@ -4,6 +4,7 @@ import { ProfileDropdown } from "./ProfileDropdown";
 import { LoginButton } from "./LoginButton";
 import { useNavigate, useLocation } from "react-router-dom";
 import MyButtonLink from "./MyButtonLink";
+import { UserSingleton } from "../data/UserSingleton";
 
 export interface RefreshProp {
   refresh: boolean;
@@ -23,6 +24,8 @@ export function Header(): JSX.Element {
       navigate("/");
     }
   }
+
+  UserSingleton.getInstance().addListener(refresh, setRefresh, "Header");
 
   return (
     <div>

@@ -2,7 +2,7 @@ import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../firebaseConfig";
 import { InputGroup, Button, Form, ButtonGroup } from "react-bootstrap";
-import { UserSingleton } from "../data/user";
+import { UserSingleton } from "../data/UserSingleton";
 import { RefreshProp } from "./Header";
 
 export function Skills(prop: RefreshProp): JSX.Element {

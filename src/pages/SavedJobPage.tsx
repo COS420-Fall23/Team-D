@@ -1,7 +1,7 @@
 import { JobListing } from "../data/job_listing";
 import { ListingView } from "../components/ListingView";
 import { Header } from "../components/Header";
-import { UserSingleton } from "../data/user";
+import { UserSingleton } from "../data/UserSingleton";
 import { useState } from "react";
 
 export function SavedJobsPage(): JSX.Element {

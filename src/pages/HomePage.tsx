@@ -26,13 +26,6 @@ export function HomePage({
         filterLocation === "" ||
         listing.location.toLowerCase().includes(filterLocation.toLowerCase())
     );
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log("[home] user is signed in");
-    } else {
-      console.log("[home] user is not signed in");
-    }
-  });
 
   return (
     <div>
