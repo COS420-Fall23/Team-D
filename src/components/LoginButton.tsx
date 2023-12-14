@@ -6,9 +6,8 @@ import { auth, db } from "../firebaseConfig";
 import { collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
-import { RefreshProp } from "./Header";
 
-export function LoginButton(prop: RefreshProp): JSX.Element {
+export function LoginButton(): JSX.Element {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({ prompt: "select_account" });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -37,7 +36,6 @@ export function LoginButton(prop: RefreshProp): JSX.Element {
             else {
                 // refresh header if user is found in database
                 console.log("[loginButton] user found in database");
-                prop.setRefresh(!prop.refresh);
             }
 
         }).catch((error) => {

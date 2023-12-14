@@ -1,11 +1,10 @@
 import { Dropdown, DropdownDivider } from "react-bootstrap";
 import { auth } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
-import { RefreshProp } from "./Header";
 import { UserSingleton } from "../data/UserSingleton";
 import { useState } from "react";
 
-export function ProfileDropdown(prop: RefreshProp): JSX.Element {
+export function ProfileDropdown(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, setUser] = useState(UserSingleton.getInstance());
   const navigate = useNavigate();

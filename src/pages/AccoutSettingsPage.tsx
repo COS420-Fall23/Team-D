@@ -12,7 +12,7 @@ export function AccountSettingsPage(): JSX.Element {
   const [localUser, setLocalUser] = React.useState(UserSingleton.getInstance());
   const [refresh, setRefresh] = React.useState(false);
 
-  localUser.addListener(refresh, setRefresh, "AccountSettingsPage");
+  UserSingleton.addListener(refresh, setRefresh, "AccountSettingsPage");
 
   return (
     <div className="accountSettings">

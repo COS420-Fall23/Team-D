@@ -20,20 +20,23 @@ export class UserSingleton implements User {
 
     listeners: Array<StateListener> = [];
 
-    public addListener(state: any, setState: (state: any) => void, id: string) {
+    public static addListener(state: any, setState: (state: any) => void, id: string) {
         // add listener to array, and overwrite if id already exists
-        let index = this.listeners.findIndex((listener) => listener.id === id);
+        let localUser = UserSingleton.getInstance();
+        let index = localUser.listeners.findIndex((listener) => listener.id === id);
         if (index !== -1) {
-            this.listeners[index] = { state, setState, id };
+            localUser.listeners[index] = { state, setState, id };
             return;
         }
-        this.listeners.push({ state, setState, id });
+        localUser.listeners.push({ state, setState, id });
     }
-    public removeListener(id: string) {
-        this.listeners = this.listeners.filter((listener) => listener.id !== id);
+    public static removeListener(id: string) {
+        let localUser = UserSingleton.getInstance();
+        localUser.listeners = localUser.listeners.filter((listener) => listener.id !== id);
     }
-    public notifyListeners() {
-        this.listeners.forEach((listener) => {
+    public static notifyListeners() {
+        let localUser = UserSingleton.getInstance();
+        localUser.listeners.forEach((listener) => {
             console.log("[userSingleton] notifying listener " + listener.id);
             listener.setState(!listener.state);
         });
@@ -77,8 +80,51 @@ export class UserSingleton implements User {
         localUser.location = user.location;
         localUser.saved_jobs = user.saved_jobs;
         localUser.skills = user.skills;
-        localUser.notifyListeners();
+        UserSingleton.notifyListeners();
     }
+
+    public static setField(fieldName: string, field: string) {
+        console.log("[userSingleton] setField");
+        let localUser = UserSingleton.getInstance();
+        switch (fieldName) {
+            case "fullName":
+                localUser.fullName = field;
+                break;
+            // email is not allowed to be changed because we are using firebase auth and it is the id
+            // case "email": 
+            //     localUser.email = field;
+            //     break;
+            case "phoneNumber":
+                localUser.phoneNumber = field;
+                break;
+            case "college":
+                localUser.college = field;
+                break;
+            case "dob":
+                localUser.dob = field;
+                break;
+            case "location":
+                localUser.location = field;
+                break;
+            default:
+                console.log("[userSingleton] setField: invalid field name");
+                break;
+        }
+        UserSingleton.notifyListeners();
+    }
+
+    public static setFullName(fullName: string) { UserSingleton.getInstance().fullName = fullName; UserSingleton.notifyListeners(); }
+    //public static setEmail(email: string) { UserSingleton.getInstance().email = email; UserSingleton.getInstance().notifyListeners(); }
+    public static setPhoneNumber(phoneNumber: string) { UserSingleton.getInstance().phoneNumber = phoneNumber; UserSingleton.notifyListeners(); }
+    public static setCollege(college: string) { UserSingleton.getInstance().college = college; UserSingleton.notifyListeners(); }
+    public static setDob(dob: string) { UserSingleton.getInstance().dob = dob; UserSingleton.notifyListeners(); }
+    public static setLocation(location: string) { UserSingleton.getInstance().location = location; UserSingleton.notifyListeners(); }
+    public static setSavedJobs(saved_jobs: Array<JobListing>) { UserSingleton.getInstance().saved_jobs = saved_jobs; UserSingleton.notifyListeners(); }
+    public static setSkills(skills: Array<string>) { UserSingleton.getInstance().skills = skills; UserSingleton.notifyListeners(); }
+    public static addSavedJob(job: JobListing) { UserSingleton.getInstance().saved_jobs.push(job); UserSingleton.notifyListeners(); }
+    public static removeSavedJob(job: JobListing) { UserSingleton.getInstance().saved_jobs = UserSingleton.getInstance().saved_jobs.filter((savedJob) => savedJob !== job); UserSingleton.notifyListeners(); }
+    public static addSkill(skill: string) { UserSingleton.getInstance().skills.push(skill); UserSingleton.notifyListeners(); }
+    public static removeSkill(skill: string) { UserSingleton.getInstance().skills = UserSingleton.getInstance().skills.filter((savedSkill) => savedSkill !== skill); UserSingleton.notifyListeners(); }
 
     public static resetUserData(): User {
         console.log("[userSingleton] resetUserData");
@@ -101,7 +147,7 @@ export class UserSingleton implements User {
         localUser.location = "";
         localUser.saved_jobs = [];
         localUser.skills = [];
-        localUser.notifyListeners();
+        UserSingleton.notifyListeners();
         return user;
     }
 }

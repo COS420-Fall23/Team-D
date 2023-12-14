@@ -5,8 +5,8 @@ import { UserSingleton } from "../data/UserSingleton";
 
 export function JobList({ listings }: { listings: JobListing[] }): JSX.Element {
   const [refresh, setRefresh] = useState(false);
-  
-  UserSingleton.getInstance().addListener(refresh, setRefresh, "JobList");
+
+  UserSingleton.addListener(refresh, setRefresh, "JobList");
 
   return (
     <div className="feedBox">

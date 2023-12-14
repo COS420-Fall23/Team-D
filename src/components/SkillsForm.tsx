@@ -3,9 +3,13 @@ import { useState } from "react";
 import { db } from "../firebaseConfig";
 import { InputGroup, Button, Form, ButtonGroup } from "react-bootstrap";
 import { UserSingleton } from "../data/UserSingleton";
-import { RefreshProp } from "./Header";
 
-export function Skills(prop: RefreshProp): JSX.Element {
+export interface SkillsProp {
+  refresh: boolean;
+  setRefresh: (refresh: boolean) => void;
+}
+
+export function Skills(prop: SkillsProp): JSX.Element {
   const [skill, setSkill] = useState("");
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, setUser] = useState(UserSingleton.getInstance());

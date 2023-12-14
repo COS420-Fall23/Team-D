@@ -42,7 +42,7 @@ auth.onAuthStateChanged(async (user) => {
         localUser.saved_jobs = docSnap.data().saved_jobs;
         localUser.skills = docSnap.data().skills;
         console.log("[user] user added to UserSingleton");
-        localUser.notifyListeners(); // This is what was missing!
+        UserSingleton.notifyListeners(); // This is what was missing!
       } else {
         console.log("[user] user is not in db");
         // cannot use react router here because this is not a component
@@ -63,5 +63,5 @@ auth.onAuthStateChanged(async (user) => {
   }
 });
 
-export { UserSingleton };
+console.log("[user] user.tsx loaded");
 
