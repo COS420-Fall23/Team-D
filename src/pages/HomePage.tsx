@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { auth } from "../firebaseConfig";
 import { JobList } from "../components/JobList";
 import { SearchAndFilter } from "../components/SearchAndFilter";
 import { JobListing } from "../data/job_listing";
-import { onAuthStateChanged } from "firebase/auth";
 import { Header } from "../components/Header";
 
 export function HomePage({
