@@ -2,40 +2,37 @@ import { useState } from "react";
 import { auth } from "../firebaseConfig";
 import { ProfileDropdown } from "./ProfileDropdown";
 import { LoginButton } from "./LoginButton";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import MyButtonLink from "./MyButtonLink";
-
-export interface RefreshProp {
-  refresh: boolean;
-  setRefresh: (refresh: boolean) => void;
-}
+import { UserSingleton } from "../data/UserSingleton";
 
 export function Header(): JSX.Element {
   const [refresh, setRefresh] = useState(false);
   let navigate = useNavigate();
+  let location = useLocation();
 
   console.log("[header] rendering header");
 
   function handleHomeClick(): void {
     // if we are not already on the home page, navigate to it
-    if (window.location.pathname !== "/") {
+    if (location.pathname !== "/") {
       navigate("/");
     }
   }
+
+  UserSingleton.addListener(refresh, setRefresh, "Header");
 
   return (
     <div>
       <header>
         <h1 onClick={handleHomeClick}>College Jobs</h1>
         <div>
-          <MyButtonLink to="/resources">Resource Page</MyButtonLink>
+          { /* link to resource page unless on resource page, then link to home page */}
+          {location.pathname !== "/resources" ? <MyButtonLink to="/resources">Resource Page</MyButtonLink> : <MyButtonLink to="/">Home Page</MyButtonLink>}
           {auth.currentUser ? (
-            <ProfileDropdown
-              refresh={refresh}
-              setRefresh={setRefresh}
-            ></ProfileDropdown>
+            <ProfileDropdown></ProfileDropdown>
           ) : (
-            <LoginButton refresh={refresh} setRefresh={setRefresh}></LoginButton>
+            <LoginButton></LoginButton>
           )}
         </div>
       </header>

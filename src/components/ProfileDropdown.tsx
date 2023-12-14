@@ -1,25 +1,17 @@
 import { Dropdown, DropdownDivider } from "react-bootstrap";
 import { auth } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
-import { RefreshProp } from "./Header";
-import { UserSingleton, waitForUser } from "../data/user";
+import { UserSingleton } from "../data/UserSingleton";
 import { useState } from "react";
 
-export function ProfileDropdown(prop: RefreshProp): JSX.Element {
+export function ProfileDropdown(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, setUser] = useState(UserSingleton.getInstance());
-  //const [refresh, setRefresh] = useState(false);
   const navigate = useNavigate();
 
   function logout(): void {
     auth.signOut();
-    // wait for the user to be logged out before refreshing the page
-    // while (auth.currentUser !== null) {
-    //   //console.log("waiting for user to be logged out");
-    // }
-    
     navigate("/");
-    prop.setRefresh(!prop.refresh);
   }
 
   function handleSettingsClick(): void {
@@ -34,8 +26,6 @@ export function ProfileDropdown(prop: RefreshProp): JSX.Element {
       navigate("/savedJobs");
     }
   }
-
-  waitForUser(user, prop.refresh, prop.setRefresh, "ProfileDropdown", true);
 
   return (
     <Dropdown data-testid="profileDropdown">

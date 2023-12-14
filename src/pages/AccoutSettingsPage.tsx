@@ -5,14 +5,14 @@ import { EditLocation } from "../components/EditLocationButton";
 import { Skills } from "../components/SkillsForm";
 import React from "react";
 import { Header } from "../components/Header";
-import { UserSingleton, waitForUser } from "../data/user";
+import { UserSingleton } from "../data/UserSingleton";
 
 export function AccountSettingsPage(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [localUser, setLocalUser] = React.useState(UserSingleton.getInstance());
   const [refresh, setRefresh] = React.useState(false);
 
-  waitForUser(localUser, refresh, setRefresh, "AccountSettingsPage");
+  UserSingleton.addListener(refresh, setRefresh, "AccountSettingsPage");
 
   return (
     <div className="accountSettings">

@@ -1,76 +1,6 @@
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
-import { JobListing } from "./job_listing";
-import { User } from "./userInterface";
-
-function delay(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-export async function waitForUser(
-  user: User,
-  refresh: boolean,
-  setRefresh: (refresh: boolean) => void,
-  calledFrom: string = "",
-  lateRefresh: boolean = true
-) {
-  await delay(100);
-  let count = 0;
-  if (user.email !== "") {
-    console.log(
-      `[waitForUser${
-        calledFrom !== "" ? ` <- ${calledFrom}` : ""
-      }] user is already ready`
-    );
-    return;
-  }
-  while (auth.currentUser === null) {
-    if (count > 10) {
-      console.log(
-        `[waitForUser${
-          calledFrom !== "" ? ` <- ${calledFrom}` : ""
-        }] user is not logged in`
-      );
-      if (lateRefresh) {
-        setRefresh(!refresh);
-      }
-      //setRefresh(!refresh);
-      return;
-    }
-    count++;
-    console.log(
-      `[waitForUser${
-        calledFrom !== "" ? ` <- ${calledFrom}` : ""
-      }] waiting for user`
-    );
-    await delay(100);
-  }
-  while (user.email === "") {
-    if (count > 10) {
-      console.log(
-        `[waitForUser${
-          calledFrom !== "" ? ` <- ${calledFrom}` : ""
-        }] user is not logged in`
-      );
-      if (lateRefresh) {
-        setRefresh(!refresh);
-      }
-      //setRefresh(!refresh);
-      return;
-    }
-    count++;
-    console.log(
-      `[waitForUser${
-        calledFrom !== "" ? ` <- ${calledFrom}` : ""
-      }] waiting for user data`
-    );
-    await delay(100);
-  }
-  console.log(
-    `[waitForUser${calledFrom !== "" ? ` <- ${calledFrom}` : ""}] user is ready`
-  );
-  setRefresh(!refresh);
-}
+import { UserSingleton } from "./UserSingleton";
 
 async function getDBUser() {
   if (auth.currentUser === null) {
@@ -93,12 +23,15 @@ async function getDBUser() {
 
 auth.onAuthStateChanged(async (user) => {
   console.log("[user] AuthStateChanged");
+  let localUser = UserSingleton.getInstance();
   if (user) {
     console.log("[user] user is signed in");
-    let localUser = UserSingleton.getInstance();
     if (user.email !== localUser.email) {
+      console.log("[user] UserSingleton is empty, getting user from db");
       let docSnap = await getDBUser();
+      console.log("[user] db call returned");
       if (docSnap) {
+        console.log("[user] user is in db");
         // UserSingleton.setUserData(docSnap.data() as User);
         localUser.fullName = docSnap.data().fullName;
         localUser.email = docSnap.data().email;
@@ -108,6 +41,8 @@ auth.onAuthStateChanged(async (user) => {
         localUser.location = docSnap.data().location;
         localUser.saved_jobs = docSnap.data().saved_jobs;
         localUser.skills = docSnap.data().skills;
+        console.log("[user] user added to UserSingleton");
+        UserSingleton.notifyListeners(); // This is what was missing!
       } else {
         console.log("[user] user is not in db");
         // cannot use react router here because this is not a component
@@ -118,66 +53,15 @@ auth.onAuthStateChanged(async (user) => {
       );
     }
   } else {
-    console.log("[user] user is not signed in, resetting signleton");
-    UserSingleton.resetUserData();
+    console.log("[user] user is not signed in");
+    if (localUser.email !== "") {
+      console.log("[user] userSingleton is not empty, resetting");
+      UserSingleton.resetUserData();
+    } else {
+      console.log("[user] userSingleton is empty");
+    }
   }
 });
 
-export class UserSingleton implements User {
-  //id: string = "";
-  fullName: string = "";
-  email: string = "";
-  phoneNumber: string = "";
-  college: string = "";
-  dob: string = "";
-  location: string = "";
-  saved_jobs: Array<JobListing> = [];
-  skills: Array<string> = [];
+console.log("[user] user.tsx loaded");
 
-  private static instance: UserSingleton;
-  private constructor() {}
-
-  public static getInstance(): UserSingleton {
-    if (!UserSingleton.instance) {
-      UserSingleton.instance = new UserSingleton();
-    }
-
-    return UserSingleton.instance;
-  }
-
-  public static setUserData(user: User) {
-    console.log("[userSingleton] setUserData" + user.email);
-    let localUser = UserSingleton.getInstance();
-    localUser.fullName = user.fullName;
-    localUser.email = user.email;
-    localUser.phoneNumber = user.phoneNumber;
-    localUser.college = user.college;
-    localUser.dob = user.dob;
-    localUser.location = user.location;
-    localUser.saved_jobs = user.saved_jobs;
-    localUser.skills = user.skills;
-  }
-
-  public static resetUserData(): User {
-    let localUser = UserSingleton.getInstance();
-    let user: User = {
-      fullName: localUser.fullName,
-      email: localUser.email,
-      phoneNumber: localUser.phoneNumber,
-      college: localUser.college,
-      dob: localUser.dob,
-      location: localUser.location,
-      saved_jobs: localUser.saved_jobs,
-      skills: localUser.skills,
-    };
-    localUser.fullName = "";
-    localUser.email = "";
-    localUser.phoneNumber = "";
-    localUser.college = "";
-    localUser.dob = "";
-    localUser.location = "";
-    localUser.saved_jobs = [];
-    localUser.skills = [];
-    return user;
-  }
-}
